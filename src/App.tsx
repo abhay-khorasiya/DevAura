@@ -1,0 +1,393 @@
+import React, { useState, useEffect } from 'react';
+import { ArrowLeft } from 'lucide-react';
+import { Navbar } from './components/layout/Navbar';
+import { Footer } from './components/layout/Footer';
+import { CommandPalette } from './components/layout/CommandPalette';
+import { Hero } from './components/home/Hero';
+import { LanguageCards } from './components/home/LanguageCards';
+import { CareerRoadmap } from './components/home/CareerRoadmap';
+import { TutorialViewer } from './components/tutorial/TutorialViewer';
+import { TryItEditor } from './components/playground/TryItEditor';
+import { ExerciseView } from './components/exercises/ExerciseView';
+import { QuizModal } from './components/quiz/QuizModal';
+import { ReferenceHub } from './components/references/ReferenceHub';
+import { FreeResourcesHub } from './components/resources/FreeResourcesHub';
+import { CertificateGenerator } from './components/certificate/CertificateGenerator';
+import { AdBanner } from './components/common/AdBanner';
+import { languageTracks, getLanguageTrack } from './data/tutorials';
+
+interface RouteState {
+  tab: string;
+  trackId: string;
+  chapterId: string;
+}
+
+// Parses URL path into application state
+function parsePath(pathname: string): RouteState {
+  const clean = pathname.replace(/^\/+|\/+$/g, '');
+  if (!clean || clean === 'home') {
+    return { tab: 'home', trackId: 'html', chapterId: 'html-home' };
+  }
+
+  const parts = clean.split('/');
+  const primary = parts[0].toLowerCase();
+
+  if (primary === 'tutorial' || primary === 'tutorials') {
+    const trackId = parts[1] || 'html';
+    const track = getLanguageTrack(trackId);
+    const chapterId = parts[2] || track?.chapters[0]?.id || 'html-home';
+    return { tab: 'tutorial', trackId, chapterId };
+  }
+
+  if (primary === 'exercises') {
+    const trackId = parts[1] || 'html';
+    return { tab: 'exercises', trackId, chapterId: '' };
+  }
+
+  if (primary === 'quiz' || primary === 'quizzes') {
+    const trackId = parts[1] || 'html';
+    return { tab: 'quiz', trackId, chapterId: '' };
+  }
+
+  if (primary === 'playground' || primary === 'tryit') {
+    return { tab: 'playground', trackId: 'html', chapterId: '' };
+  }
+
+  if (primary === 'references' || primary === 'reference') {
+    return { tab: 'references', trackId: 'html', chapterId: '' };
+  }
+
+  if (primary === 'resources' || primary === 'free-resources') {
+    return { tab: 'resources', trackId: 'html', chapterId: '' };
+  }
+
+  if (primary === 'certificates' || primary === 'certificate') {
+    return { tab: 'certificates', trackId: 'html', chapterId: '' };
+  }
+
+  // Check if primary is directly a language track (e.g. /python or /html)
+  const matchedTrack = languageTracks.find(t => t.id === primary);
+  if (matchedTrack) {
+    const chapterId = parts[1] || matchedTrack.chapters[0]?.id || '';
+    return { tab: 'tutorial', trackId: primary, chapterId };
+  }
+
+  return { tab: 'home', trackId: 'html', chapterId: 'html-home' };
+}
+
+// Constructs standard clean URL for state
+function buildUrl(tab: string, trackId?: string, chapterId?: string): string {
+  if (tab === 'home') return '/';
+  if (tab === 'tutorial') {
+    const track = getLanguageTrack(trackId || 'html');
+    if (chapterId && chapterId !== track?.chapters[0]?.id) {
+      return `/tutorial/${trackId}/${chapterId}`;
+    }
+    return `/tutorial/${trackId || 'html'}`;
+  }
+  if (tab === 'exercises') {
+    return trackId && trackId !== 'all' ? `/exercises/${trackId}` : '/exercises';
+  }
+  if (tab === 'quiz') {
+    return trackId && trackId !== 'all' ? `/quiz/${trackId}` : '/quiz';
+  }
+  return `/${tab}`;
+}
+
+// Updates document tab title
+function updateTitle(tab: string, trackId?: string, chapterId?: string) {
+  if (tab === 'home') {
+    document.title = 'DevAura - The Modern Developer Learning Platform & Playground';
+  } else if (tab === 'tutorial') {
+    const track = getLanguageTrack(trackId || 'html');
+    const chapter = track?.chapters.find(c => c.id === chapterId);
+    if (chapter) {
+      document.title = `${chapter.title} - ${track?.name} Tutorial | DevAura`;
+    } else {
+      document.title = `${track?.name || 'Code'} Tutorial - DevAura`;
+    }
+  } else if (tab === 'exercises') {
+    document.title = 'Interactive Code Exercises - DevAura';
+  } else if (tab === 'quiz') {
+    document.title = 'Developer Skill Assessment Quiz - DevAura';
+  } else if (tab === 'playground') {
+    document.title = 'Try It Yourself Code Playground - DevAura';
+  } else if (tab === 'references') {
+    document.title = 'Complete Web Dev Syntax Reference - DevAura';
+  } else if (tab === 'resources') {
+    document.title = 'Free Developer Learning Resources - DevAura';
+  } else if (tab === 'certificates') {
+    document.title = 'Official Verified Developer Certificate - DevAura';
+  }
+}
+
+export default function App() {
+  const initialRoute = parsePath(window.location.pathname);
+
+  const [currentTab, setCurrentTab] = useState<string>(initialRoute.tab);
+  const [selectedTrackId, setSelectedTrackId] = useState<string>(initialRoute.trackId);
+  const [selectedChapterId, setSelectedChapterId] = useState<string>(initialRoute.chapterId);
+  const [playgroundCode, setPlaygroundCode] = useState<string | undefined>(undefined);
+  const [playgroundLanguage, setPlaygroundLanguage] = useState<string>('html');
+  const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(false);
+
+  // Sync state with browser History API and back/forward buttons
+  useEffect(() => {
+    const onPopState = () => {
+      const route = parsePath(window.location.pathname);
+      setCurrentTab(route.tab);
+      setSelectedTrackId(route.trackId);
+      const track = getLanguageTrack(route.trackId);
+      const chapterId = route.chapterId || track?.chapters[0]?.id || '';
+      setSelectedChapterId(chapterId);
+      updateTitle(route.tab, route.trackId, chapterId);
+    };
+
+    window.addEventListener('popstate', onPopState);
+
+    // Initial title update
+    updateTitle(initialRoute.tab, initialRoute.trackId, initialRoute.chapterId);
+
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
+
+  // Central Navigation Handler: updates state, URL, and document title
+  const navigateTo = (newTab: string, newTrackId?: string, newChapterId?: string) => {
+    const trackId = newTrackId || selectedTrackId;
+    const track = getLanguageTrack(trackId);
+    const chapterId = newChapterId || (newTab === 'tutorial' ? (track?.chapters[0]?.id || '') : '');
+
+    setCurrentTab(newTab);
+    if (newTrackId) setSelectedTrackId(newTrackId);
+    if (chapterId) setSelectedChapterId(chapterId);
+
+    const targetUrl = buildUrl(newTab, trackId, chapterId);
+    if (window.location.pathname !== targetUrl) {
+      window.history.pushState({ tab: newTab, trackId, chapterId }, '', targetUrl);
+    }
+    updateTitle(newTab, trackId, chapterId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Dedicated Back Button Handler
+  const handleGoBack = () => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      navigateTo('home');
+    }
+  };
+
+  // Select language track
+  const handleSelectTrack = (langId: string) => {
+    const track = getLanguageTrack(langId);
+    const firstChapter = track?.chapters[0]?.id || '';
+    navigateTo('tutorial', langId, firstChapter);
+  };
+
+  // Select specific chapter
+  const handleSelectChapter = (langId: string, chapterId: string) => {
+    navigateTo('tutorial', langId, chapterId);
+  };
+
+  // Launch Try It Yourself Playground
+  const handleOpenPlayground = (code?: string, lang?: string) => {
+    if (code) setPlaygroundCode(code);
+    if (lang) setPlaygroundLanguage(lang);
+    navigateTo('playground');
+  };
+
+  // Launch exercises
+  const handleOpenExercises = (langId?: string) => {
+    navigateTo('exercises', langId || selectedTrackId);
+  };
+
+  // Launch quizzes
+  const handleOpenQuiz = (langId?: string) => {
+    navigateTo('quiz', langId || selectedTrackId);
+  };
+
+  // Launch references
+  const handleOpenReferences = () => {
+    navigateTo('references');
+  };
+
+  const currentTrack = getLanguageTrack(selectedTrackId) || languageTracks[0];
+
+  return (
+    <div className={`min-h-screen flex flex-col ${isDark ? 'dark bg-[#090d16] text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+      
+      {/* Top Navigation */}
+      <Navbar
+        currentTab={currentTab}
+        onNavigate={tab => navigateTo(tab)}
+        onSelectTrack={handleSelectTrack}
+        onSelectChapter={handleSelectChapter}
+        onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
+        isDark={isDark}
+        onToggleTheme={() => setIsDark(!isDark)}
+        onGoBack={handleGoBack}
+      />
+
+      {/* Sub Navigation Bar with Back Button & Breadcrumbs (when not on Home) */}
+      {currentTab !== 'home' && (
+        <div className="bg-white border-b border-slate-200/80 px-4 sm:px-8 py-2.5 flex items-center justify-between text-xs text-slate-600 shadow-2xs sticky top-16 z-20">
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={handleGoBack}
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 transition cursor-pointer shadow-2xs"
+              title="Go back to previous page"
+            >
+              <ArrowLeft className="w-3.5 h-3.5 text-indigo-600" />
+              <span>Back</span>
+            </button>
+
+            <span className="text-slate-300">|</span>
+
+            <div className="flex items-center space-x-1.5 text-slate-500 font-medium truncate">
+              <button onClick={() => navigateTo('home')} className="hover:text-indigo-600 transition font-semibold">DevAura</button>
+              <span>/</span>
+              <span className="capitalize font-semibold text-slate-800">{currentTab}</span>
+              {currentTab === 'tutorial' && (
+                <>
+                  <span>/</span>
+                  <span className="text-indigo-600 font-bold">{currentTrack.name}</span>
+                </>
+              )}
+            </div>
+          </div>
+
+          {currentTab === 'tutorial' && (
+            <div className="hidden sm:flex items-center space-x-2">
+              <span className="text-[11px] text-slate-500 font-medium">Switch Language:</span>
+              <select
+                value={selectedTrackId}
+                onChange={e => handleSelectTrack(e.target.value)}
+                className="text-xs bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-slate-800 font-bold focus:outline-none focus:border-indigo-500 cursor-pointer"
+              >
+                {Array.from(new Set(languageTracks.map(t => t.category || 'Other'))).map(category => (
+                  <optgroup key={category} label={category}>
+                    {languageTracks.filter(t => (t.category || 'Other') === category).map(t => (
+                      <option key={t.id} value={t.id}>{t.name} Tutorial</option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Global Command Palette Search Modal */}
+      <CommandPalette
+        isOpen={isCommandPaletteOpen}
+        onClose={() => setIsCommandPaletteOpen(false)}
+        onSelectChapter={handleSelectChapter}
+        onOpenPlayground={handleOpenPlayground}
+        onOpenExercises={handleOpenExercises}
+        onOpenReferences={handleOpenReferences}
+        onOpenResources={() => navigateTo('resources')}
+      />
+
+      {/* Dynamic View Container */}
+      <div className="flex-1">
+        {currentTab === 'home' && (
+          <div className="relative max-w-[1880px] mx-auto flex justify-center px-4 gap-6 xl:gap-10">
+            {/* Left Ad Stream: 4 curated manual ads spaced out down the page */}
+            <aside aria-label="Left Advertisements" className="hidden xl:flex w-[160px] shrink-0 flex-col items-center py-10 pb-16 space-y-24 z-10">
+              <AdBanner type="skyscraper" position="home-left-1" />
+              <AdBanner type="skyscraper" position="home-left-2" />
+              <AdBanner type="skyscraper" position="home-left-3" />
+              <AdBanner type="skyscraper" position="home-left-4" />
+            </aside>
+
+            {/* Main Center Home Content */}
+            <main className="flex-1 max-w-7xl min-w-0">
+              <Hero
+                onStartTrack={handleSelectTrack}
+                onOpenPlayground={handleOpenPlayground}
+              />
+              <LanguageCards
+                onSelectTrack={handleSelectTrack}
+                onOpenPlayground={handleOpenPlayground}
+                onOpenExercises={handleOpenExercises}
+              />
+              <CareerRoadmap
+                onStartTrack={handleSelectTrack}
+              />
+            </main>
+
+            {/* Right Ad Stream: 4 curated manual ads spaced out down the page */}
+            <aside aria-label="Right Advertisements" className="hidden xl:flex w-[160px] shrink-0 flex-col items-center py-10 pb-16 space-y-24 z-10">
+              <AdBanner type="skyscraper" position="home-right-1" />
+              <AdBanner type="skyscraper" position="home-right-2" />
+              <AdBanner type="skyscraper" position="home-right-3" />
+              <AdBanner type="skyscraper" position="home-right-4" />
+            </aside>
+          </div>
+        )}
+
+        {currentTab === 'tutorial' && (
+          <TutorialViewer
+            track={currentTrack}
+            initialChapterId={selectedChapterId}
+            onSelectChapter={handleSelectChapter}
+            onGoBack={handleGoBack}
+            onOpenPlayground={handleOpenPlayground}
+            onOpenExercises={handleOpenExercises}
+            onOpenQuiz={handleOpenQuiz}
+          />
+        )}
+
+        {currentTab === 'playground' && (
+          <TryItEditor
+            initialCode={playgroundCode}
+            initialLanguage={playgroundLanguage}
+            onClose={handleGoBack}
+          />
+        )}
+
+        {currentTab === 'exercises' && (
+          <ExerciseView
+            initialLanguage={selectedTrackId}
+            onOpenPlayground={handleOpenPlayground}
+          />
+        )}
+
+        {currentTab === 'quiz' && (
+          <QuizModal
+            onStartTrack={handleSelectTrack}
+            onClaimCertificate={() => navigateTo('certificates')}
+          />
+        )}
+
+        {currentTab === 'references' && (
+          <ReferenceHub
+            onOpenPlayground={handleOpenPlayground}
+          />
+        )}
+
+        {currentTab === 'resources' && (
+          <FreeResourcesHub
+            onOpenPlayground={handleOpenPlayground}
+            onSelectTrack={handleSelectTrack}
+          />
+        )}
+
+        {currentTab === 'certificates' && (
+          <CertificateGenerator
+            defaultName="Developer"
+          />
+        )}
+      </div>
+
+      {/* Footer */}
+      <Footer
+        onNavigate={tab => navigateTo(tab)}
+        onSelectTrack={handleSelectTrack}
+      />
+
+    </div>
+  );
+}
