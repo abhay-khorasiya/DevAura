@@ -16,7 +16,6 @@ import {
   Layers
 } from 'lucide-react';
 import { LanguageTrack, TutorialChapter } from '../../types';
-import { AdBanner } from '../common/AdBanner';
 
 interface TutorialViewerProps {
   track: LanguageTrack;
@@ -365,11 +364,6 @@ export const TutorialViewer: React.FC<TutorialViewerProps> = ({
             <span className="text-[10px] bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 px-1.5 py-0.5 rounded font-bold">Assessment</span>
           </button>
         </div>
-
-        {/* Left Sidebar Ad Placement */}
-        <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col items-center">
-          <AdBanner type="sidebar" position="tutorial-left-sidebar" className="w-full max-w-[280px]" />
-        </div>
       </aside>
 
       {/* Main Content Area */}
@@ -587,11 +581,6 @@ export const TutorialViewer: React.FC<TutorialViewerProps> = ({
           })}
         </div>
 
-        {/* Bottom Leaderboard Advertisement */}
-        <div className="mt-12 flex justify-center">
-          <AdBanner type="leaderboard" position="tutorial-content-bottom" />
-        </div>
-
         {/* Bottom Navigation Buttons */}
         <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4">
           <button
@@ -626,12 +615,6 @@ export const TutorialViewer: React.FC<TutorialViewerProps> = ({
         </div>
 
       </main>
-
-      {/* Right Rail: Sticky Ad Sidebar (Visible on xl+ screens) */}
-      <aside aria-label="Tutorial Right Advertisement" className="hidden xl:flex w-72 shrink-0 flex-col items-center py-10 px-4 border-l border-slate-100 dark:border-slate-800 sticky top-16 self-start space-y-6 bg-slate-50/60 dark:bg-[#0a0f1d] transition-colors duration-200">
-        <AdBanner type="sidebar" position="tutorial-right-rectangle" className="w-full max-w-[280px]" />
-        <AdBanner type="skyscraper" position="tutorial-right-skyscraper" className="w-full max-w-[280px]" />
-      </aside>
     </div>
   );
 };

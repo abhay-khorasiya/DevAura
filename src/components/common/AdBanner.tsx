@@ -24,13 +24,18 @@ export const AdBanner: React.FC<AdBannerProps> = ({
 }) => {
   useEffect(() => {
     try {
-      if (typeof window !== 'undefined' && window.adsbygoogle) {
+      if (typeof window !== 'undefined' && window.adsbygoogle && client !== 'ca-pub-XXXXXXXXXXXXXXXX') {
         window.adsbygoogle.push({});
       }
     } catch (e) {
       // AdSense push error handler (e.g. adblock or dev environment)
     }
-  }, []);
+  }, [client]);
+
+  // If no real Google AdSense client ID is configured, keep ad space completely hidden
+  if (!client || client === 'ca-pub-XXXXXXXXXXXXXXXX') {
+    return null;
+  }
 
   // Skyscraper (Left / Right vertical sidebar rails - 160x600 or 280/300x600 wide)
   if (type === 'skyscraper') {

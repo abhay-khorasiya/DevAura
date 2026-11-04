@@ -14,7 +14,6 @@ import { QuizModal } from './components/quiz/QuizModal';
 import { ReferenceHub } from './components/references/ReferenceHub';
 import { FreeResourcesHub } from './components/resources/FreeResourcesHub';
 import { CertificateGenerator } from './components/certificate/CertificateGenerator';
-import { AdBanner } from './components/common/AdBanner';
 import { languageTracks, getLanguageTrack } from './data/tutorials';
 
 interface RouteState {
@@ -350,17 +349,9 @@ export default function App() {
       {/* Dynamic View Container */}
       <div className="flex-1">
         {currentTab === 'home' && (
-          <div className="relative max-w-[1880px] mx-auto flex justify-center px-4 gap-6 xl:gap-10">
-            {/* Left Ad Stream: 4 curated manual ads spaced out down the page */}
-            <aside aria-label="Left Advertisements" className="hidden xl:flex w-[160px] shrink-0 flex-col items-center py-10 pb-16 space-y-24 z-10">
-              <AdBanner type="skyscraper" position="home-left-1" />
-              <AdBanner type="skyscraper" position="home-left-2" />
-              <AdBanner type="skyscraper" position="home-left-3" />
-              <AdBanner type="skyscraper" position="home-left-4" />
-            </aside>
-
+          <div className="relative max-w-7xl mx-auto px-4">
             {/* Main Center Home Content */}
-            <main className="flex-1 max-w-7xl min-w-0">
+            <main className="w-full">
               <Hero
                 onStartTrack={handleSelectTrack}
                 onOpenPlayground={handleOpenPlayground}
@@ -374,14 +365,6 @@ export default function App() {
                 onStartTrack={handleSelectTrack}
               />
             </main>
-
-            {/* Right Ad Stream: 4 curated manual ads spaced out down the page */}
-            <aside aria-label="Right Advertisements" className="hidden xl:flex w-[160px] shrink-0 flex-col items-center py-10 pb-16 space-y-24 z-10">
-              <AdBanner type="skyscraper" position="home-right-1" />
-              <AdBanner type="skyscraper" position="home-right-2" />
-              <AdBanner type="skyscraper" position="home-right-3" />
-              <AdBanner type="skyscraper" position="home-right-4" />
-            </aside>
           </div>
         )}
 
