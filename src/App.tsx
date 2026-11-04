@@ -217,6 +217,36 @@ export default function App() {
     navigateTo('tutorial', langId, chapterId);
   };
 
+  // Synchronous butter-smooth theme switcher
+  const handleToggleTheme = () => {
+    const root = document.documentElement;
+    const nextDark = !isDark;
+
+    // 1. Temporarily activate butter-smooth theme transition
+    root.classList.add('theme-transition');
+
+    // 2. Synchronously set the root dark class so CSS updates in the exact same frame
+    if (nextDark) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+
+    try {
+      localStorage.setItem('devaura_theme', nextDark ? 'dark' : 'light');
+    } catch (e) {
+      // ignore
+    }
+
+    // 3. Update React state
+    setIsDark(nextDark);
+
+    // 4. Remove transition helper after animation finishes so hover and scroll performance stay 100% 60fps
+    window.setTimeout(() => {
+      root.classList.remove('theme-transition');
+    }, 300);
+  };
+
   // Launch Try It Yourself Playground
   const handleOpenPlayground = (code?: string, lang?: string) => {
     if (code) setPlaygroundCode(code);
@@ -242,7 +272,7 @@ export default function App() {
   const currentTrack = getLanguageTrack(selectedTrackId) || languageTracks[0];
 
   return (
-    <div className={`min-h-screen flex flex-col ${isDark ? 'dark bg-[#090d16] text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+    <div className={`min-h-screen flex flex-col transition-colors duration-250 ${isDark ? 'dark bg-[#090d16] text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
       
       {/* Top Navigation */}
       <Navbar
@@ -252,7 +282,7 @@ export default function App() {
         onSelectChapter={handleSelectChapter}
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         isDark={isDark}
-        onToggleTheme={() => setIsDark(!isDark)}
+        onToggleTheme={handleToggleTheme}
         onGoBack={handleGoBack}
       />
 

@@ -84,10 +84,13 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
   };
 
   return (
-    <section className="relative pt-12 pb-20 overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-gradient-to-b from-white via-slate-50 to-slate-100/60 dark:from-[#090d16] dark:via-[#0c1222] dark:to-[#090d16] transition-colors duration-200">
+    <section className="relative pt-12 pb-20 overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#090d16] transition-colors duration-300">
+      {/* Smooth cross-fade gradient backgrounds */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-slate-100/60 opacity-100 dark:opacity-0 transition-opacity duration-300 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#090d16] via-[#0c1222] to-[#090d16] opacity-0 dark:opacity-100 transition-opacity duration-300 pointer-events-none" />
       {/* Background Glow effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-indigo-100/70 via-violet-50 to-transparent dark:from-indigo-950/40 dark:via-violet-950/20 blur-3xl pointer-events-none rounded-full" />
-      <div className="absolute top-40 right-10 w-[300px] h-[300px] bg-sky-100/60 dark:bg-sky-950/30 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-indigo-100/70 via-violet-50 to-transparent dark:from-indigo-950/40 dark:via-violet-950/20 blur-3xl pointer-events-none rounded-full transform-gpu transition-all duration-300" />
+      <div className="absolute top-40 right-10 w-[300px] h-[300px] bg-sky-100/60 dark:bg-sky-950/30 blur-3xl pointer-events-none rounded-full transform-gpu transition-all duration-300" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

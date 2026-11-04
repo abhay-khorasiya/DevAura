@@ -37,7 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className={`sticky top-0 z-40 w-full border-b transition-colors ${isDark
+    <header className={`sticky top-0 z-40 w-full border-b transition-colors duration-250 ${isDark
         ? 'border-slate-800 bg-[#090d16]/90 text-white'
         : 'border-slate-200 bg-white/95 text-slate-800 shadow-xs'
       } backdrop-blur-md`}>
@@ -181,7 +181,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button
             onClick={onToggleTheme}
             title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            className={`p-2 rounded-xl border transition ${isDark
+            className={`p-2 rounded-xl border transition-all duration-200 active:scale-90 cursor-pointer ${isDark
                 ? 'bg-slate-800 border-slate-700 text-amber-400 hover:bg-slate-700'
                 : 'bg-slate-100 border-slate-200 text-slate-600 hover:bg-slate-200'
               }`}
