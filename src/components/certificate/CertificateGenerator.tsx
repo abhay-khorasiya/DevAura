@@ -147,7 +147,7 @@ export const CertificateGenerator: React.FC<CertificateGeneratorProps> = ({
           </p>
 
           {/* Student Name */}
-          <div className="my-5 text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 underline decoration-indigo-500 decoration-wavy underline-offset-8">
+          <div className="my-5 text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900">
             {studentName || 'Your Name'}
           </div>
 
