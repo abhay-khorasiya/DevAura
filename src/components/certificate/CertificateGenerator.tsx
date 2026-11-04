@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import confetti from 'canvas-confetti';
-import { 
-  Award, 
-  Printer, 
+import {
+  Award,
+  Printer,
   ShieldCheck
 } from 'lucide-react';
 import { languageTracks } from '../../data/tutorials';
@@ -39,17 +39,14 @@ export const CertificateGenerator: React.FC<CertificateGeneratorProps> = ({
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      
+
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-10">
         <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-950/50 border border-amber-300 dark:border-amber-800 text-amber-800 dark:text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
           <Award className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-          <span>DevAura Free Official Certification</span>
+          <span>DevAura Free Certification</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Generate Your Certificate</h1>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
-          Verify your skills with an official, verifiable DevAura developer credential. 100% free with zero fees.
-        </p>
       </div>
 
       {/* Customization Controls */}
@@ -117,7 +114,7 @@ export const CertificateGenerator: React.FC<CertificateGeneratorProps> = ({
       </div>
 
       {/* The Printable Certificate Design (Light, Crisp, High-Contrast) */}
-      <div 
+      <div
         ref={certRef}
         className="relative bg-white border-8 border-slate-300 rounded-3xl p-8 sm:p-14 shadow-xl text-center overflow-hidden max-w-4xl mx-auto print:border-none print:shadow-none"
       >
@@ -127,7 +124,7 @@ export const CertificateGenerator: React.FC<CertificateGeneratorProps> = ({
 
         {/* Decorative inner border */}
         <div className="border-2 border-indigo-600/30 rounded-2xl p-6 sm:p-10 relative bg-white/90">
-          
+
           {/* Top Logo & Crest */}
           <div className="flex flex-col items-center justify-center">
             <div className="w-16 h-16 rounded-2xl bg-indigo-50 border border-indigo-200 flex items-center justify-center shadow-sm mb-4">
@@ -135,7 +132,7 @@ export const CertificateGenerator: React.FC<CertificateGeneratorProps> = ({
             </div>
 
             <div className="text-xs uppercase tracking-widest font-extrabold text-indigo-700 mb-1">
-              DevAura Developer Academy
+              DevAura Developer 
             </div>
             <h2 className="text-2xl sm:text-4xl font-serif font-bold text-slate-900 tracking-wide">
               Certificate of Completion
