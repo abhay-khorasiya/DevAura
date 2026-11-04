@@ -1,46 +1,52 @@
 import React, { useState, useMemo } from 'react';
 import { languageTracks } from '../../data/tutorials';
-import { 
-  FileCode2, 
-  Palette, 
-  Sparkles, 
-  Terminal, 
-  Database, 
-  Atom, 
-  Wind, 
-  ArrowRight,
-  Code2,
-  CheckSquare,
-  Search,
-  Coffee,
-  Cpu,
-  Zap,
-  ShieldCheck,
-  Smartphone,
-  Gem,
-  Globe,
-  BarChart2,
-  Layers,
-  Server,
-  Binary,
-  Table,
-  PieChart,
-  Brain,
-  GitBranch,
-  Layout,
-  BookOpen
-} from 'lucide-react';
+import { LanguageLogo } from '../common/LanguageLogo';
+import { ArrowRight, Search, BookOpen } from 'lucide-react';
 
 interface LanguageCardsProps {
   onSelectTrack: (langId: string) => void;
-  onOpenPlayground: (code?: string, lang?: string) => void;
-  onOpenExercises: (langId?: string) => void;
+  onOpenPlayground?: (code?: string, lang?: string) => void;
+  onOpenExercises?: (langId?: string) => void;
 }
+
+const trackW3Meta: Record<string, { shortName: string; shortDesc: string }> = {
+  html: { shortName: 'HTML', shortDesc: 'The building blocks of every webpage' },
+  css: { shortName: 'CSS', shortDesc: 'Style and layout for web pages' },
+  javascript: { shortName: 'JavaScript', shortDesc: 'Interactive and dynamic web pages' },
+  sql: { shortName: 'SQL', shortDesc: 'Query and manage databases' },
+  python: { shortName: 'Python', shortDesc: 'Popular language for web, data & AI' },
+  java: { shortName: 'Java', shortDesc: 'Object-oriented programming language' },
+  c: { shortName: 'C', shortDesc: 'A powerful general-purpose language' },
+  cpp: { shortName: 'C++', shortDesc: 'The language behind games & engines' },
+  csharp: { shortName: 'C#', shortDesc: 'Modern language for Windows, apps & games' },
+  react: { shortName: 'React', shortDesc: 'JavaScript library for user interfaces' },
+  mysql: { shortName: 'MySQL', shortDesc: 'Popular open-source relational database' },
+  nodejs: { shortName: 'Node.js', shortDesc: 'JavaScript runtime built on Chrome V8' },
+  php: { shortName: 'PHP', shortDesc: 'Web server-side scripting language' },
+  typescript: { shortName: 'TypeScript', shortDesc: 'Typed superset of JavaScript' },
+  angular: { shortName: 'Angular', shortDesc: 'Web application framework by Google' },
+  angularjs: { shortName: 'AngularJS', shortDesc: 'MVC framework for dynamic web apps' },
+  git: { shortName: 'Git', shortDesc: 'Distributed version control system' },
+  postgresql: { shortName: 'PostgreSQL', shortDesc: 'Advanced open-source relational database' },
+  mongodb: { shortName: 'MongoDB', shortDesc: 'Document-based NoSQL database' },
+  r: { shortName: 'R', shortDesc: 'Statistical computing and data graphics' },
+  go: { shortName: 'Go', shortDesc: 'Fast, open-source language by Google' },
+  kotlin: { shortName: 'Kotlin', shortDesc: 'Modern programming language for Android' },
+  rust: { shortName: 'Rust', shortDesc: 'Memory-safe systems programming' },
+  swift: { shortName: 'Swift', shortDesc: 'Modern programming language by Apple' },
+  aws: { shortName: 'AWS', shortDesc: 'Cloud computing platform by Amazon' },
+  django: { shortName: 'Django', shortDesc: 'Python web framework for rapid development' },
+  jquery: { shortName: 'jQuery', shortDesc: 'Fast, small JavaScript DOM library' },
+  excel: { shortName: 'Excel', shortDesc: 'Spreadsheets and formulas for analysis' },
+  numpy: { shortName: 'NumPy', shortDesc: 'Python library for numerical computing' },
+  pandas: { shortName: 'Pandas', shortDesc: 'Python library for data manipulation' },
+  datascience: { shortName: 'Data Science', shortDesc: 'Analyze data, build models & insights' },
+  dsa: { shortName: 'DSA', shortDesc: 'Data structures & algorithms fundamentals' },
+  cybersecurity: { shortName: 'Cyber Security', shortDesc: 'Protect systems, networks & data' },
+};
 
 export const LanguageCards: React.FC<LanguageCardsProps> = ({
   onSelectTrack,
-  onOpenPlayground,
-  onOpenExercises,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -55,40 +61,14 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
     { id: 'Computer Science & Security', label: 'CS & Security' },
   ];
 
-  const getIcon = (name: string) => {
-    switch (name) {
-      case 'FileCode2': return <FileCode2 className="w-5 h-5 text-indigo-600" />;
-      case 'Palette': return <Palette className="w-5 h-5 text-cyan-600" />;
-      case 'Sparkles': return <Sparkles className="w-5 h-5 text-amber-600" />;
-      case 'Terminal': return <Terminal className="w-5 h-5 text-indigo-600" />;
-      case 'Database': return <Database className="w-5 h-5 text-orange-600" />;
-      case 'Atom': return <Atom className="w-5 h-5 text-sky-600" />;
-      case 'Wind': return <Wind className="w-5 h-5 text-teal-600" />;
-      case 'Coffee': return <Coffee className="w-5 h-5 text-amber-700" />;
-      case 'Cpu': return <Cpu className="w-5 h-5 text-blue-600" />;
-      case 'Zap': return <Zap className="w-5 h-5 text-amber-500" />;
-      case 'ShieldCheck': return <ShieldCheck className="w-5 h-5 text-rose-600" />;
-      case 'Smartphone': return <Smartphone className="w-5 h-5 text-violet-600" />;
-      case 'Gem': return <Gem className="w-5 h-5 text-rose-600" />;
-      case 'Globe': return <Globe className="w-5 h-5 text-indigo-600" />;
-      case 'BarChart2': return <BarChart2 className="w-5 h-5 text-blue-600" />;
-      case 'Layers': return <Layers className="w-5 h-5 text-emerald-600" />;
-      case 'Server': return <Server className="w-5 h-5 text-green-600" />;
-      case 'Binary': return <Binary className="w-5 h-5 text-indigo-600" />;
-      case 'Table': return <Table className="w-5 h-5 text-emerald-700" />;
-      case 'PieChart': return <PieChart className="w-5 h-5 text-sky-600" />;
-      case 'Brain': return <Brain className="w-5 h-5 text-purple-600" />;
-      case 'GitBranch': return <GitBranch className="w-5 h-5 text-red-500" />;
-      case 'Layout': return <Layout className="w-5 h-5 text-purple-600" />;
-      default: return <Code2 className="w-5 h-5 text-indigo-600" />;
-    }
-  };
-
   const filteredTracks = useMemo(() => {
     return languageTracks.filter(track => {
+      const meta = trackW3Meta[track.id] || { shortName: track.name, shortDesc: track.tagline };
       const matchesCategory = selectedCategory === 'all' || track.category === selectedCategory;
       const matchesSearch = !searchQuery.trim() || 
         track.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        meta.shortName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        meta.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
         track.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
         track.description.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
@@ -153,85 +133,48 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
           </div>
         </div>
 
-        {/* Tracks Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredTracks.map(track => (
-            <div
-              key={track.id}
-              className="group relative rounded-2xl p-6 bg-white border border-slate-200 hover:border-indigo-400 transition-all duration-300 flex flex-col justify-between shadow-2xs hover:shadow-lg"
-            >
-              <div>
-                {/* Header: Icon & Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 group-hover:scale-105 transition">
-                    {getIcon(track.iconName)}
+        {/* W3Schools Clean 4-Column Minimalist Tracks Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {filteredTracks.map(track => {
+            const meta = trackW3Meta[track.id] || { shortName: track.name, shortDesc: track.tagline };
+            return (
+              <div
+                key={track.id}
+                onClick={() => onSelectTrack(track.id)}
+                className="group relative rounded-2xl p-6 sm:p-7 bg-white border border-slate-200 hover:border-indigo-400 transition-all duration-300 flex flex-col items-center text-center justify-between shadow-2xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer"
+              >
+                <div className="flex flex-col items-center w-full">
+                  {/* Authentic Language Logo */}
+                  <div className="h-16 flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110">
+                    <LanguageLogo id={track.id} size={56} />
                   </div>
-                  <div className="flex items-center space-x-1.5">
-                    {track.category && (
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 border border-slate-200">
-                        {track.category}
-                      </span>
-                    )}
-                    <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-800 border border-indigo-200">
-                      {track.chapters.length} Modules
-                    </span>
-                  </div>
+
+                  {/* Language Name */}
+                  <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition">
+                    {meta.shortName}
+                  </h3>
+
+                  {/* Concise 1-line Description */}
+                  <p className="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed min-h-[40px] flex items-center justify-center">
+                    {meta.shortDesc}
+                  </p>
                 </div>
 
-                {/* Title & Tagline */}
-                <h3 className="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition">
-                  {track.name}
-                </h3>
-                <p className="text-xs font-semibold text-indigo-600 mt-0.5">{track.tagline}</p>
-                <p className="text-sm text-slate-600 mt-3 line-clamp-2 leading-relaxed">
-                  {track.description}
-                </p>
-
-                {/* Track Chapter Preview */}
-                <div className="mt-4 pt-4 border-t border-slate-100 space-y-1.5">
-                  <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                    Featured Lessons
-                  </div>
-                  {track.chapters.slice(0, 2).map(ch => (
-                    <div key={ch.id} className="text-xs text-slate-700 flex items-center justify-between">
-                      <span className="truncate pr-2 font-medium">• {ch.title}</span>
-                      <span className="text-[10px] text-slate-400 shrink-0 font-mono">{ch.readTime}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="mt-6 pt-4 border-t border-slate-100 space-y-2">
+                {/* Minimalist Learn Button */}
                 <button
-                  onClick={() => onSelectTrack(track.id)}
-                  className="w-full flex items-center justify-center space-x-2 py-2.5 px-4 rounded-xl bg-indigo-50 hover:bg-indigo-600 text-indigo-800 hover:text-white font-bold text-sm border border-indigo-200 hover:border-indigo-600 transition cursor-pointer"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onSelectTrack(track.id);
+                  }}
+                  className="w-full mt-5 py-2.5 px-3 rounded-xl bg-slate-100 group-hover:bg-indigo-600 text-slate-700 group-hover:text-white font-bold text-xs transition duration-200 flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
                 >
-                  <span>Learn {track.name}</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span>Learn {meta.shortName}</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </button>
-
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => onOpenPlayground(undefined, track.id)}
-                    className="flex items-center justify-center space-x-1.5 py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 transition cursor-pointer"
-                  >
-                    <Code2 className="w-3.5 h-3.5 text-indigo-600" />
-                    <span>Try Code</span>
-                  </button>
-
-                  <button
-                    onClick={() => onOpenExercises(track.id)}
-                    className="flex items-center justify-center space-x-1.5 py-2 px-3 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 transition cursor-pointer"
-                  >
-                    <CheckSquare className="w-3.5 h-3.5 text-cyan-600" />
-                    <span>Exercises</span>
-                  </button>
-                </div>
               </div>
-
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Empty Search State */}
