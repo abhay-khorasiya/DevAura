@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import confetti from 'canvas-confetti';
-import { 
-  CheckCircle2, 
-  XCircle, 
-  RotateCcw, 
-  Award, 
-  HelpCircle, 
+import {
+  CheckCircle2,
+  XCircle,
+  RotateCcw,
+  Award,
+  HelpCircle,
   ArrowRight,
   ArrowLeft,
   Search,
@@ -14,12 +14,12 @@ import {
   ChevronDown,
   ChevronUp
 } from 'lucide-react';
-import { 
-  quizQuestions, 
-  quizCatalog, 
-  quizCategories, 
-  getQuestionsByTrack, 
-  getQuizMetaByTrack 
+import {
+  quizQuestions,
+  quizCatalog,
+  quizCategories,
+  getQuestionsByTrack,
+  getQuizMetaByTrack
 } from '../../data/quizzes';
 import { LanguageLogo } from '../common/LanguageLogo';
 import { QuizQuestion } from '../../types';
@@ -31,11 +31,11 @@ interface QuizModalProps {
   onSelectQuiz?: (langId: string) => void;
 }
 
-export const QuizModal: React.FC<QuizModalProps> = ({ 
-  initialLanguage, 
-  onStartTrack, 
+export const QuizModal: React.FC<QuizModalProps> = ({
+  initialLanguage,
+  onStartTrack,
   onClaimCertificate,
-  onSelectQuiz 
+  onSelectQuiz
 }) => {
   // If initialLanguage is provided and not 'all', start on that quiz
   const [activeQuizId, setActiveQuizId] = useState<string | null>(() => {
@@ -206,7 +206,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-[#090d16] py-10 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
         <div className="max-w-3xl mx-auto">
-          
+
           {/* Back button */}
           <button
             onClick={handleBackToCatalog}
@@ -273,7 +273,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
           {/* VIEW B: Active Question Screen */}
           {quizStarted && !isFinished && currentQ && (
             <div className="bg-white dark:bg-[#0d1424] rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
-              
+
               {/* Question Top Progress Header */}
               <div className="px-6 sm:px-8 py-4 bg-slate-50 dark:bg-[#111827] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
@@ -289,7 +289,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
 
               {/* Progress Bar */}
               <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5">
-                <div 
+                <div
                   className="bg-indigo-600 dark:bg-indigo-500 h-1.5 transition-all duration-300"
                   style={{ width: `${((currentIdx + 1) / totalQuestions) * 100}%` }}
                 />
@@ -431,8 +431,8 @@ export const QuizModal: React.FC<QuizModalProps> = ({
                   {score / totalQuestions >= 0.8
                     ? '🎉 Outstanding Performance!'
                     : score / totalQuestions >= 0.6
-                    ? '👍 Good Job!'
-                    : '📚 Keep Practicing!'}
+                      ? '👍 Good Job!'
+                      : '📚 Keep Practicing!'}
                 </div>
               </div>
 
@@ -490,11 +490,10 @@ export const QuizModal: React.FC<QuizModalProps> = ({
                 {showReview && (
                   <div className="mt-4 space-y-4">
                     {userAnswers.map((ua, index) => (
-                      <div 
+                      <div
                         key={index}
-                        className={`p-5 rounded-2xl border text-xs leading-relaxed ${
-                          ua.isCorrect ? 'bg-emerald-50/50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800/60' : 'bg-rose-50/50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-800/60'
-                        }`}
+                        className={`p-5 rounded-2xl border text-xs leading-relaxed ${ua.isCorrect ? 'bg-emerald-50/50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800/60' : 'bg-rose-50/50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-800/60'
+                          }`}
                       >
                         <div className="font-bold text-slate-900 dark:text-white text-sm mb-2">
                           {index + 1}. {ua.question.question}
@@ -532,19 +531,14 @@ export const QuizModal: React.FC<QuizModalProps> = ({
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-[#090d16] py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
-        
+
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider mb-4">
-            <HelpCircle className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-            <span>DevAura Interactive Quizzes</span>
-          </div>
+
           <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight sm:text-5xl">
-            W3Schools Style Quizzes
+            DevAura Quizzes
           </h1>
-          <p className="mt-4 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-            Test your skills across 33+ technology quizzes. Instant grading, no time limit, and detailed explanations for every question.
-          </p>
+
         </div>
 
         {/* Filter Controls: Category Tabs & Search Bar */}
@@ -555,11 +549,10 @@ export const QuizModal: React.FC<QuizModalProps> = ({
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
-                  selectedCategory === cat
-                    ? 'bg-indigo-600 text-white shadow-xs'
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
-                }`}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${selectedCategory === cat
+                  ? 'bg-indigo-600 text-white shadow-xs'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+                  }`}
               >
                 {cat}
               </button>

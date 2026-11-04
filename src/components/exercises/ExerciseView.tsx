@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
-import { 
-  CheckCircle2, 
-  HelpCircle, 
-  Eye, 
-  Award, 
+import {
+  CheckCircle2,
+  HelpCircle,
+  Eye,
+  Award,
   Sparkles,
   Code2
 } from 'lucide-react';
@@ -102,13 +102,11 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-10">
-      
+
       {/* Title & Progress Banner */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 pb-6 border-b border-slate-200 dark:border-slate-800 gap-4">
         <div>
           <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400 mb-1">
-            <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-            <span>DevAura Interactive Exercises</span>
           </div>
           <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">Test Yourself With Code Exercises</h1>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
@@ -137,11 +135,10 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
               setSelectedLang(lang.id);
               setCurrentIndex(0);
             }}
-            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer ${
-              selectedLang === lang.id
-                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                : 'bg-white dark:bg-[#0d1424] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shadow-2xs'
-            }`}
+            className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer ${selectedLang === lang.id
+              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+              : 'bg-white dark:bg-[#0d1424] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shadow-2xs'
+              }`}
           >
             {lang.label}
           </button>
@@ -150,7 +147,7 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
       {/* Exercise Card */}
       <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1424] overflow-hidden shadow-md">
-        
+
         {/* Card Header */}
         <div className="flex items-center justify-between px-6 py-4 bg-slate-50 dark:bg-[#0a0f1d] border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center space-x-3">
@@ -189,7 +186,7 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
           {/* Interactive Code Blank Box */}
           <div className="bg-[#0f172a] border border-slate-800 rounded-xl p-6 font-mono text-sm leading-loose text-slate-100 shadow-inner">
             <div className="text-slate-400 text-xs mb-3">// Fill in the blank keyword below:</div>
-            
+
             <div className="flex flex-wrap items-center gap-2 text-slate-200">
               {currentExercise.initialCode.split('___').map((part, index, array) => (
                 <React.Fragment key={index}>
@@ -216,11 +213,10 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
           {/* Feedback message */}
           {currentFeedback && (
-            <div className={`mt-4 p-4 rounded-xl border flex items-center space-x-3 ${
-              currentFeedback.correct 
-                ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-300 dark:border-indigo-800 text-indigo-900 dark:text-indigo-200' 
-                : 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 text-rose-900 dark:text-rose-200'
-            }`}>
+            <div className={`mt-4 p-4 rounded-xl border flex items-center space-x-3 ${currentFeedback.correct
+              ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-300 dark:border-indigo-800 text-indigo-900 dark:text-indigo-200'
+              : 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 text-rose-900 dark:text-rose-200'
+              }`}>
               {currentFeedback.correct ? (
                 <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0" />
               ) : (

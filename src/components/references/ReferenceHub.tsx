@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { 
-  Search, 
-  Copy, 
-  Check, 
-  Code2, 
-  ExternalLink, 
+import {
+  Search,
+  Copy,
+  Check,
+  Code2,
+  ExternalLink,
   BookOpen
 } from 'lucide-react';
 import { referenceItems } from '../../data/references';
@@ -20,7 +20,7 @@ export const ReferenceHub: React.FC<ReferenceHubProps> = ({ onOpenPlayground }) 
 
   const filtered = referenceItems.filter(item => {
     const matchesLang = selectedLang === 'all' || item.language === selectedLang;
-    const matchesQuery = 
+    const matchesQuery =
       item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
       item.description.toLowerCase().includes(searchQuery.toLowerCase());
@@ -43,29 +43,12 @@ export const ReferenceHub: React.FC<ReferenceHubProps> = ({ onOpenPlayground }) 
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      
+
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider mb-3">
-          <BookOpen className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-          <span>DevAura Developer Encyclopedia</span>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Syntax & Reference Guide</h1>
-        <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
-          Comprehensive cheat sheets, syntax definitions, and live runnable examples for everyday coding.
-        </p>
 
-        {/* Search Bar */}
-        <div className="mt-6 relative max-w-lg mx-auto">
-          <Search className="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
-          <input
-            type="text"
-            placeholder="Filter tags, properties, methods (e.g. <div>, display, map)..."
-            value={searchQuery}
-            onChange={e => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-[#0d1424] border border-slate-300 dark:border-slate-700 rounded-2xl text-slate-800 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-500 transition shadow-2xs"
-          />
-        </div>
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Syntax & Reference Guide</h1>
+
 
         {/* Language Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mt-6">
@@ -73,11 +56,10 @@ export const ReferenceHub: React.FC<ReferenceHubProps> = ({ onOpenPlayground }) 
             <button
               key={l.id}
               onClick={() => setSelectedLang(l.id)}
-              className={`px-4 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer ${
-                selectedLang === l.id
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                  : 'bg-white dark:bg-[#0d1424] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shadow-2xs'
-              }`}
+              className={`px-4 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer ${selectedLang === l.id
+                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
+                : 'bg-white dark:bg-[#0d1424] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shadow-2xs'
+                }`}
             >
               {l.label}
             </button>

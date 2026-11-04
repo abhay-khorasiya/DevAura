@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { 
-  Sparkles, 
-  Pipette, 
-  FileText, 
-  Layout, 
-  HelpCircle, 
-  Copy, 
-  Check, 
-  Code2, 
-  ArrowRight, 
+import {
+  Sparkles,
+  Pipette,
+  FileText,
+  Layout,
+  HelpCircle,
+  Copy,
+  Check,
+  Code2,
+  ArrowRight,
   Search
 } from 'lucide-react';
 import { ColorPickerTool } from './ColorPickerTool';
-import { 
-  htmlEntitiesList, 
-  cheatSheets, 
-  websiteTemplates, 
-  interviewQuestionsBank 
+import {
+  htmlEntitiesList,
+  cheatSheets,
+  websiteTemplates,
+  interviewQuestionsBank
 } from '../../data/resources';
 
 interface FreeResourcesHubProps {
@@ -47,17 +47,12 @@ export const FreeResourcesHub: React.FC<FreeResourcesHubProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      
+
       {/* Page Header */}
       <div className="text-center max-w-3xl mx-auto mb-12">
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-800 text-xs font-bold uppercase tracking-wider mb-3">
-          <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
-          <span>100% Free Open Developer Hub</span>
-        </div>
+
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900">Free Learning Resources</h1>
-        <p className="text-sm text-slate-600 mt-2">
-          Everything you need in one place: interactive developer tools, HTML color pickers, cheat sheets, starter templates, and interview prep.
-        </p>
+        
 
         {/* Resource Sub-Navigation Tabs */}
         <div className="flex flex-wrap justify-center gap-2 mt-8">
@@ -73,11 +68,10 @@ export const FreeResourcesHub: React.FC<FreeResourcesHubProps> = ({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer ${
-                  activeTab === tab.id
+                className={`flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer ${activeTab === tab.id
                     ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
                     : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs'
-                }`}
+                  }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{tab.label}</span>

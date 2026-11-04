@@ -93,7 +93,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectTrack }) => 
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('resources')} className="text-violet-600 dark:text-violet-400 font-semibold hover:text-violet-700 dark:hover:text-violet-300 transition cursor-pointer">
+                <button onClick={() => onNavigate('resources')} className="text-slate-600 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 transition cursor-pointer">
                   Free Learning Resources Hub
                 </button>
               </li>
