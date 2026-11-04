@@ -84,10 +84,10 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
   };
 
   return (
-    <section className="relative pt-12 pb-20 overflow-hidden border-b border-slate-200 bg-gradient-to-b from-white via-slate-50 to-slate-100/60">
+    <section className="relative pt-12 pb-20 overflow-hidden border-b border-slate-200 dark:border-slate-800 bg-gradient-to-b from-white via-slate-50 to-slate-100/60 dark:from-[#090d16] dark:via-[#0c1222] dark:to-[#090d16] transition-colors duration-200">
       {/* Background Glow effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-indigo-100/70 via-violet-50 to-transparent blur-3xl pointer-events-none rounded-full" />
-      <div className="absolute top-40 right-10 w-[300px] h-[300px] bg-sky-100/60 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-indigo-100/70 via-violet-50 to-transparent dark:from-indigo-950/40 dark:via-violet-950/20 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute top-40 right-10 w-[300px] h-[300px] bg-sky-100/60 dark:bg-sky-950/30 blur-3xl pointer-events-none rounded-full" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -95,19 +95,19 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
           {/* Left Column: Headline, Value Proposition, Action CTAs */}
           <div className="lg:col-span-6 text-left">
             {/* Announcement badge */}
-            <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-800 text-xs font-bold uppercase tracking-wider mb-6">
-              <Flame className="w-4 h-4 text-indigo-600" />
+            <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider mb-6">
+              <Flame className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
               <span>Next-Generation Developer Portal</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.12]">
               Learn to Code With <br />
-              <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 dark:from-indigo-400 dark:via-violet-400 dark:to-sky-400 bg-clip-text text-transparent">
                 Modern Precision.
               </span>
             </h1>
 
-            <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 dark:from-indigo-400 dark:via-violet-400 dark:to-sky-400 bg-clip-text text-transparent font-medium">
               • DevAura is the completely reimagined,
             </span>
             <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
@@ -203,8 +203,8 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
                       key={tab}
                       onClick={() => setActiveTab(tab)}
                       className={`px-2.5 py-1 text-xs font-bold rounded-md uppercase transition ${activeTab === tab
-                          ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
-                          : 'text-slate-600 hover:text-slate-900'
+                          ? 'bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-200 border border-indigo-300 dark:border-indigo-700'
+                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                         }`}
                     >
                       {tab}
@@ -214,7 +214,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
               </div>
 
               {/* Code Content Split Preview */}
-              <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200 text-xs">
+              <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-800 text-xs">
                 {/* Code Editor Panel */}
                 <div className="p-4 bg-[#0f172a] flex flex-col justify-between font-mono h-64 overflow-y-auto">
                   <pre className="text-indigo-200 leading-relaxed select-all whitespace-pre-wrap">
@@ -241,8 +241,8 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
                     />
                   </div>
 
-                  <div className="mt-3 pt-3 border-t border-slate-200 flex items-center justify-between">
-                    <span className="flex items-center text-[11px] text-indigo-700 font-bold">
+                  <div className="mt-3 pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                    <span className="flex items-center text-[11px] text-indigo-700 dark:text-indigo-400 font-bold">
                       <span className="w-2 h-2 rounded-full bg-indigo-500 animate-ping mr-2" />
                       Live Render Preview
                     </span>
