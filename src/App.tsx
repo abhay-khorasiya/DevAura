@@ -45,7 +45,7 @@ function parsePath(pathname: string): RouteState {
   }
 
   if (primary === 'quiz' || primary === 'quizzes') {
-    const trackId = parts[1] || 'html';
+    const trackId = parts[1] || 'all';
     return { tab: 'quiz', trackId, chapterId: '' };
   }
 
@@ -109,7 +109,12 @@ function updateTitle(tab: string, trackId?: string, chapterId?: string) {
   } else if (tab === 'exercises') {
     document.title = 'Interactive Code Exercises - DevAura';
   } else if (tab === 'quiz') {
-    document.title = 'Developer Skill Assessment Quiz - DevAura';
+    if (trackId && trackId !== 'all') {
+      const track = getLanguageTrack(trackId);
+      document.title = `${track?.name || trackId.toUpperCase()} Quiz - DevAura`;
+    } else {
+      document.title = 'Interactive Developer Skill Quizzes - DevAura';
+    }
   } else if (tab === 'playground') {
     document.title = 'Try It Yourself Code Playground - DevAura';
   } else if (tab === 'references') {
@@ -154,12 +159,12 @@ export default function App() {
 
   // Central Navigation Handler: updates state, URL, and document title
   const navigateTo = (newTab: string, newTrackId?: string, newChapterId?: string) => {
-    const trackId = newTrackId || selectedTrackId;
+    const trackId = newTrackId !== undefined ? newTrackId : (newTab === 'quiz' ? 'all' : selectedTrackId);
     const track = getLanguageTrack(trackId);
     const chapterId = newChapterId || (newTab === 'tutorial' ? (track?.chapters[0]?.id || '') : '');
 
     setCurrentTab(newTab);
-    if (newTrackId) setSelectedTrackId(newTrackId);
+    setSelectedTrackId(trackId);
     if (chapterId) setSelectedChapterId(chapterId);
 
     const targetUrl = buildUrl(newTab, trackId, chapterId);
@@ -357,8 +362,10 @@ export default function App() {
 
         {currentTab === 'quiz' && (
           <QuizModal
+            initialLanguage={selectedTrackId}
             onStartTrack={handleSelectTrack}
             onClaimCertificate={() => navigateTo('certificates')}
+            onSelectQuiz={(langId) => navigateTo('quiz', langId)}
           />
         )}
 

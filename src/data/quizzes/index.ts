@@ -1,200 +1,357 @@
 import { QuizQuestion } from '../../types';
+import { webQuizzes } from './webQuizzes';
+import { frameworkQuizzes } from './frameworkQuizzes';
+import { programmingQuizzes } from './programmingQuizzes';
+import { databaseQuizzes } from './databaseQuizzes';
+import { dataScienceQuizzes } from './dataScienceQuizzes';
+import { csSecurityQuizzes } from './csSecurityQuizzes';
 
 export const quizQuestions: QuizQuestion[] = [
-  // HTML Quiz Questions
+  ...webQuizzes,
+  ...frameworkQuizzes,
+  ...programmingQuizzes,
+  ...databaseQuizzes,
+  ...dataScienceQuizzes,
+  ...csSecurityQuizzes
+];
+
+export interface QuizCatalogItem {
+  id: string;
+  name: string;
+  quizTitle: string;
+  category: string;
+  description: string;
+  questionCount: number;
+  timeLimit: string;
+}
+
+export const quizCategories = [
+  'All Quizzes',
+  'HTML & CSS',
+  'JavaScript & Frameworks',
+  'Backend & Programming',
+  'Databases & Cloud',
+  'Data Science & AI',
+  'CS & Security'
+] as const;
+
+export const quizCatalog: QuizCatalogItem[] = [
+  // 1. HTML & CSS
   {
-    id: 'q-html-1',
-    language: 'html',
-    question: 'What does HTML stand for?',
-    options: [
-      'Hyper Text Markup Language',
-      'High Tech Modern Language',
-      'Hyperlinks and Text Management Language',
-      'Home Tool Markup Language'
-    ],
-    correctAnswerIndex: 0,
-    explanation: 'HTML stands for HyperText Markup Language, the standard formatting language for web documents.'
+    id: 'html',
+    name: 'HTML5',
+    quizTitle: 'HTML Quiz',
+    category: 'HTML & CSS',
+    description: 'Test your knowledge of HTML tags, semantic structure, forms, and attributes.',
+    questionCount: 8,
+    timeLimit: 'No time limit'
   },
   {
-    id: 'q-html-2',
-    language: 'html',
-    question: 'Which HTML element is used to specify a footer for a document or section?',
-    options: ['<bottom>', '<section-end>', '<footer>', '<foot>'],
-    correctAnswerIndex: 2,
-    explanation: 'The <footer> element defines a footer for a document or section, typically containing author, copyright, or contact details.'
-  },
-  {
-    id: 'q-html-3',
-    language: 'html',
-    question: 'What is the correct HTML element for inserting a line break?',
-    options: ['<break>', '<lb>', '<br>', '<newline>'],
-    correctAnswerIndex: 2,
-    explanation: '<br> inserts a single line break and does not require a closing tag.'
+    id: 'css',
+    name: 'CSS3',
+    quizTitle: 'CSS Quiz',
+    category: 'HTML & CSS',
+    description: 'Test your styling skills including Flexbox, Grid, selectors, and the box model.',
+    questionCount: 8,
+    timeLimit: 'No time limit'
   },
 
-  // CSS Quiz Questions
+  // 2. JavaScript & Frameworks
   {
-    id: 'q-css-1',
-    language: 'css',
-    question: 'What does CSS stand for?',
-    options: [
-      'Creative Style Sheets',
-      'Cascading Style Sheets',
-      'Computer Style Syntax',
-      'Colorful Style Sheets'
-    ],
-    correctAnswerIndex: 1,
-    explanation: 'CSS stands for Cascading Style Sheets, referring to how styles cascade down from parent to child elements.'
+    id: 'javascript',
+    name: 'JavaScript',
+    quizTitle: 'JavaScript Quiz',
+    category: 'JavaScript & Frameworks',
+    description: 'Assess understanding of ES6+, DOM manipulation, arrays, promises, and async code.',
+    questionCount: 8,
+    timeLimit: 'No time limit'
   },
   {
-    id: 'q-css-2',
-    language: 'css',
-    question: 'Which property is used to change the background color of an element in CSS?',
-    options: ['bgcolor', 'color', 'background-color', 'surface'],
-    correctAnswerIndex: 2,
-    explanation: '`background-color` is the standard CSS property for setting an element\'s background fill color.'
+    id: 'typescript',
+    name: 'TypeScript',
+    quizTitle: 'TypeScript Quiz',
+    category: 'JavaScript & Frameworks',
+    description: 'Check your knowledge of static typing, interfaces, generics, and utility types.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
   {
-    id: 'q-css-3',
-    language: 'css',
-    question: 'Which CSS property controls the text size?',
-    options: ['text-style', 'font-size', 'text-size', 'font-weight'],
-    correctAnswerIndex: 1,
-    explanation: '`font-size` adjusts the size of the font, specified in px, rem, em, %, etc.'
-  },
-
-  // JS Quiz Questions
-  {
-    id: 'q-js-1',
-    language: 'javascript',
-    question: 'Which operator is used to assign a value to a variable in JavaScript?',
-    options: ['*', '=', '===', '=='],
-    correctAnswerIndex: 1,
-    explanation: 'The single equal sign `=` is the assignment operator. `===` checks strict equality.'
+    id: 'react',
+    name: 'React 18',
+    quizTitle: 'React Quiz',
+    category: 'JavaScript & Frameworks',
+    description: 'Test your grasp of JSX, hooks (useState, useEffect), Virtual DOM, and state management.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
   {
-    id: 'q-js-2',
-    language: 'javascript',
-    question: 'How do you create a function in modern JavaScript using arrow syntax?',
-    options: [
-      'function: myFunction() => {}',
-      'const myFunction = () => {}',
-      'create myFunction = => {}',
-      'arrow myFunction() {}'
-    ],
-    correctAnswerIndex: 1,
-    explanation: 'Arrow function expressions are written using `const name = () => { ... }`.'
+    id: 'angular',
+    name: 'Angular',
+    quizTitle: 'Angular Quiz',
+    category: 'JavaScript & Frameworks',
+    description: 'Evaluate knowledge of components, signals, dependency injection, and directives.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
   {
-    id: 'q-js-3',
-    language: 'javascript',
-    question: 'What is the purpose of the Array map() method?',
-    options: [
-      'Removes elements from an array in place',
-      'Transforms every item and returns a new array of the same length',
-      'Sorts array elements numerically',
-      'Searches for a single element and returns a boolean'
-    ],
-    correctAnswerIndex: 1,
-    explanation: '`map()` calls a callback function on every item and returns a brand new array with transformed results.'
+    id: 'angularjs',
+    name: 'AngularJS',
+    quizTitle: 'AngularJS Quiz',
+    category: 'JavaScript & Frameworks',
+    description: 'Test classic 1.x directives (ng-model, ng-repeat), $scope, and MVC architecture.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'jquery',
+    name: 'jQuery',
+    quizTitle: 'jQuery Quiz',
+    category: 'JavaScript & Frameworks',
+    description: 'Test DOM traversal, event handling, AJAX, and animation helper methods.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
 
-  // Python Quiz Questions
+  // 3. Backend & Programming
   {
-    id: 'q-py-1',
-    language: 'python',
-    question: 'How do you start writing an IF statement in Python?',
-    options: ['if x > y then:', 'if (x > y)', 'if x > y:', 'if x > y then'],
-    correctAnswerIndex: 2,
-    explanation: 'Python uses `if condition:` followed by an indented block of code.'
+    id: 'python',
+    name: 'Python',
+    quizTitle: 'Python Quiz',
+    category: 'Backend & Programming',
+    description: 'Test Python syntax, lists, dictionaries, comprehension, and OOP concepts.',
+    questionCount: 8,
+    timeLimit: 'No time limit'
   },
   {
-    id: 'q-py-2',
-    language: 'python',
-    question: 'Which method can be used to remove any whitespace from both the beginning and end of a string?',
-    options: ['strip()', 'trim()', 'clean()', 'len()'],
-    correctAnswerIndex: 0,
-    explanation: 'In Python, `strip()` removes leading and trailing whitespace. (`trim()` is used in JavaScript).'
+    id: 'java',
+    name: 'Java',
+    quizTitle: 'Java Quiz',
+    category: 'Backend & Programming',
+    description: 'Test your understanding of JVM, OOP, collections, interfaces, and memory management.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
   {
-    id: 'q-py-3',
-    language: 'python',
-    question: 'What is the output of type(10.5) in Python?',
-    options: ['<class \'int\'>', '<class \'double\'>', '<class \'float\'>', '<class \'decimal\'>'],
-    correctAnswerIndex: 2,
-    explanation: 'Decimal numbers in Python belong to the `<class \'float\'>` data type.'
+    id: 'c',
+    name: 'C',
+    quizTitle: 'C Quiz',
+    category: 'Backend & Programming',
+    description: 'Assess pointers, memory allocation (malloc/free), structs, and low-level mechanics.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'cpp',
+    name: 'C++',
+    quizTitle: 'C++ Quiz',
+    category: 'Backend & Programming',
+    description: 'Test modern C++ concepts including STL vectors, templates, classes, and RAII.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'csharp',
+    name: 'C#',
+    quizTitle: 'C# Quiz',
+    category: 'Backend & Programming',
+    description: 'Evaluate knowledge of .NET runtime, LINQ, async/await, and object-oriented design.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'php',
+    name: 'PHP',
+    quizTitle: 'PHP Quiz',
+    category: 'Backend & Programming',
+    description: 'Test server-side scripting, superglobals ($_POST, $_GET), sessions, and PDO.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'nodejs',
+    name: 'Node.js',
+    quizTitle: 'Node.js Quiz',
+    category: 'Backend & Programming',
+    description: 'Assess event-driven architecture, non-blocking I/O, npm, and CommonJS modules.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'django',
+    name: 'Django',
+    quizTitle: 'Django Quiz',
+    category: 'Backend & Programming',
+    description: 'Test MVT architecture, ORM queries, migrations, templates, and admin dashboard.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'go',
+    name: 'Go',
+    quizTitle: 'Go Quiz',
+    category: 'Backend & Programming',
+    description: 'Test concurrency with Goroutines, channels, interfaces, and idiomatic error handling.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'rust',
+    name: 'Rust',
+    quizTitle: 'Rust Quiz',
+    category: 'Backend & Programming',
+    description: 'Evaluate ownership, borrowing, lifetime rules, match patterns, and Cargo usage.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'kotlin',
+    name: 'Kotlin',
+    quizTitle: 'Kotlin Quiz',
+    category: 'Backend & Programming',
+    description: 'Test null safety (?), coroutines, data classes, and modern Android development.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'swift',
+    name: 'Swift',
+    quizTitle: 'Swift Quiz',
+    category: 'Backend & Programming',
+    description: 'Assess optionals, guard statements, SwiftUI principles, and Apple platform patterns.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'r',
+    name: 'R',
+    quizTitle: 'R Quiz',
+    category: 'Backend & Programming',
+    description: 'Test vectors, data frames, statistical modeling, and ggplot2 fundamentals.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
 
-  // SQL Quiz Questions
+  // 4. Databases & Cloud
   {
-    id: 'q-sql-1',
-    language: 'sql',
-    question: 'Which SQL statement is used to extract data from a database?',
-    options: ['GET', 'OPEN', 'EXTRACT', 'SELECT'],
-    correctAnswerIndex: 3,
-    explanation: 'The `SELECT` statement is the core ANSI SQL keyword used to query data from database tables.'
+    id: 'sql',
+    name: 'SQL',
+    quizTitle: 'SQL Quiz',
+    category: 'Databases & Cloud',
+    description: 'Evaluate SELECT statements, JOINs, aggregate functions (HAVING), and constraints.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
   {
-    id: 'q-sql-2',
-    language: 'sql',
-    question: 'Which SQL clause is used to filter the result of aggregate functions like SUM or COUNT?',
-    options: ['WHERE', 'HAVING', 'GROUP BY', 'FILTER'],
-    correctAnswerIndex: 1,
-    explanation: '`HAVING` filters aggregated groups after `GROUP BY`. `WHERE` cannot be used with aggregate functions.'
+    id: 'mysql',
+    name: 'MySQL',
+    quizTitle: 'MySQL Quiz',
+    category: 'Databases & Cloud',
+    description: 'Test InnoDB storage engine, AUTO_INCREMENT, indexing, and EXPLAIN plans.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
-
-  // React Quiz Questions
   {
-    id: 'q-react-1',
-    language: 'react',
-    question: 'What is the primary purpose of the React Virtual DOM?',
-    options: [
-      'To directly write assembly instructions to the GPU',
-      'To minimize expensive browser reflows and repaints through batched diffing',
-      'To replace HTML completely with canvas rendering',
-      'To provide local SQLite database storage'
-    ],
-    correctAnswerIndex: 1,
-    explanation: 'The Virtual DOM allows React to calculate UI diffs in memory and batch the minimal set of real DOM operations.'
+    id: 'postgresql',
+    name: 'PostgreSQL',
+    quizTitle: 'PostgreSQL Quiz',
+    category: 'Databases & Cloud',
+    description: 'Assess JSONB indexing, CTEs, RETURNING clauses, and advanced open-source SQL.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
-
-  // Tailwind Quiz Questions
   {
-    id: 'q-tw-1',
-    language: 'tailwind',
-    question: 'What does the Tailwind class `p-4` calculate to by default?',
-    options: ['4 pixels', '1rem (16 pixels)', '4% width', '40 pixels'],
-    correctAnswerIndex: 1,
-    explanation: 'In Tailwind\'s 4px proportional scale, 1 unit equals 0.25rem (4px). Therefore `p-4` is 1rem or 16px.'
+    id: 'mongodb',
+    name: 'MongoDB',
+    quizTitle: 'MongoDB Quiz',
+    category: 'Databases & Cloud',
+    description: 'Test NoSQL document models, collections, BSON, find() filters, and aggregation.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
-
-  // TypeScript Quiz Questions
   {
-    id: 'q-ts-1',
-    language: 'typescript',
-    question: 'What is the difference between `any` and `unknown` in TypeScript?',
-    options: [
-      'They are identical aliases for the same type',
-      '`unknown` forces you to perform type checking before accessing properties, whereas `any` disables all type checks',
-      '`unknown` can only hold strings, while `any` holds anything',
-      '`unknown` was deprecated in TypeScript 2.0'
-    ],
-    correctAnswerIndex: 1,
-    explanation: '`unknown` is the type-safe alternative to `any`. It requires narrowing before invoking methods or reading attributes.'
+    id: 'aws',
+    name: 'AWS',
+    quizTitle: 'AWS Cloud Quiz',
+    category: 'Databases & Cloud',
+    description: 'Test core Amazon Web Services including EC2, S3, Lambda, IAM, and RDS.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   },
 
-  // Git Quiz Questions
+  // 5. Data Science & AI
   {
-    id: 'q-git-1',
-    language: 'git',
-    question: 'What is the difference between `git fetch` and `git pull`?',
-    options: [
-      '`git fetch` deletes files, while `git pull` restores them',
-      '`git fetch` downloads remote changes without merging; `git pull` fetches and immediately merges into your current branch',
-      '`git pull` is only used for GitHub Enterprise',
-      '`git fetch` uploads your local commits to the server'
-    ],
-    correctAnswerIndex: 1,
-    explanation: '`git fetch` updates your remote tracking branches without altering your work. `git pull` runs fetch + merge.'
+    id: 'numpy',
+    name: 'NumPy',
+    quizTitle: 'NumPy Quiz',
+    category: 'Data Science & AI',
+    description: 'Test ndarray creation, vectorization, broadcasting, and matrix operations.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'pandas',
+    name: 'Pandas',
+    quizTitle: 'Pandas Quiz',
+    category: 'Data Science & AI',
+    description: 'Assess DataFrames, read_csv, loc vs iloc indexing, groupby, and missing data handling.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'datascience',
+    name: 'Data Science',
+    quizTitle: 'Data Science & AI Quiz',
+    category: 'Data Science & AI',
+    description: 'Test supervised vs unsupervised learning, overfitting, evaluation metrics, and gradient descent.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'excel',
+    name: 'Excel',
+    quizTitle: 'Excel Quiz',
+    category: 'Data Science & AI',
+    description: 'Test spreadsheet formulas, XLOOKUP, PivotTables, and data analysis calculations.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+
+  // 6. CS & Security
+  {
+    id: 'git',
+    name: 'Git',
+    quizTitle: 'Git Quiz',
+    category: 'CS & Security',
+    description: 'Assess commits, branching, merging, stash, and remote repository workflow.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'dsa',
+    name: 'DSA',
+    quizTitle: 'Data Structures Quiz',
+    category: 'CS & Security',
+    description: 'Test Big O complexity, trees, stacks, queues, hash tables, and sorting algorithms.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
+  },
+  {
+    id: 'cybersecurity',
+    name: 'Cyber Security',
+    quizTitle: 'Cyber Security Quiz',
+    category: 'CS & Security',
+    description: 'Assess authentication, SQL injection, XSS, password hashing, and network defenses.',
+    questionCount: 6,
+    timeLimit: 'No time limit'
   }
 ];
+
+export function getQuestionsByTrack(trackId: string): QuizQuestion[] {
+  const norm = trackId.toLowerCase().replace(/[^a-z0-9]/g, '');
+  return quizQuestions.filter(q => q.language.toLowerCase().replace(/[^a-z0-9]/g, '') === norm);
+}
+
+export function getQuizMetaByTrack(trackId: string): QuizCatalogItem | undefined {
+  const norm = trackId.toLowerCase().replace(/[^a-z0-9]/g, '');
+  return quizCatalog.find(item => item.id.toLowerCase().replace(/[^a-z0-9]/g, '') === norm);
+}

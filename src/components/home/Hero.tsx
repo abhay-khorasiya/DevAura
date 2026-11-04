@@ -101,14 +101,14 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-              Learn to Code with <br />
+              Learn to Code  <br />
               <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 bg-clip-text text-transparent">
                 Modern Precision.
               </span>
             </h1>
 
             <p className="mt-5 text-lg text-slate-600 leading-relaxed max-w-xl">
-              DevAura is the completely reimagined, clean developer learning platform inspired by W3Schools — supercharged with live interactive playgrounds, real-time sandboxes, and modern engineering standards.
+              DevAura is the completely reimagined, clean developer learning platform that combines interactive coding exercises, live in-browser previews, and a modern design to help you learn programming faster and more effectively.
             </p>
 
             {/* Language Quick-tags */}
