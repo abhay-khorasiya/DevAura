@@ -135,7 +135,28 @@ export default function App() {
   const [playgroundCode, setPlaygroundCode] = useState<string | undefined>(undefined);
   const [playgroundLanguage, setPlaygroundLanguage] = useState<string>('html');
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState<boolean>(false);
-  const [isDark, setIsDark] = useState<boolean>(false);
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('devaura_theme');
+      if (saved) return saved === 'dark';
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
+
+  // Ensure <html> always has or removes the .dark class synchronously
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    try {
+      localStorage.setItem('devaura_theme', isDark ? 'dark' : 'light');
+    } catch (e) {
+      // ignore
+    }
+  }, [isDark]);
 
   // Sync state with browser History API and back/forward buttons
   useEffect(() => {
@@ -237,27 +258,27 @@ export default function App() {
 
       {/* Sub Navigation Bar with Back Button & Breadcrumbs (when not on Home) */}
       {currentTab !== 'home' && (
-        <div className="bg-white border-b border-slate-200/80 px-4 sm:px-8 py-2.5 flex items-center justify-between text-xs text-slate-600 shadow-2xs sticky top-16 z-20">
+        <div className="bg-white dark:bg-[#0c1222] border-b border-slate-200/80 dark:border-slate-800 px-4 sm:px-8 py-2.5 flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 shadow-2xs sticky top-16 z-20">
           <div className="flex items-center space-x-3">
             <button
               onClick={handleGoBack}
-              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 transition cursor-pointer shadow-2xs"
+              className="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg font-bold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 transition cursor-pointer shadow-2xs"
               title="Go back to previous page"
             >
-              <ArrowLeft className="w-3.5 h-3.5 text-indigo-600" />
+              <ArrowLeft className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
               <span>Back</span>
             </button>
 
-            <span className="text-slate-300">|</span>
+            <span className="text-slate-300 dark:text-slate-700">|</span>
 
-            <div className="flex items-center space-x-1.5 text-slate-500 font-medium truncate">
-              <button onClick={() => navigateTo('home')} className="hover:text-indigo-600 transition font-semibold">DevAura</button>
+            <div className="flex items-center space-x-1.5 text-slate-500 dark:text-slate-400 font-medium truncate">
+              <button onClick={() => navigateTo('home')} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition font-semibold">DevAura</button>
               <span>/</span>
-              <span className="capitalize font-semibold text-slate-800">{currentTab}</span>
+              <span className="capitalize font-semibold text-slate-800 dark:text-slate-200">{currentTab}</span>
               {currentTab === 'tutorial' && (
                 <>
                   <span>/</span>
-                  <span className="text-indigo-600 font-bold">{currentTrack.name}</span>
+                  <span className="text-indigo-600 dark:text-indigo-400 font-bold">{currentTrack.name}</span>
                 </>
               )}
             </div>
@@ -265,11 +286,11 @@ export default function App() {
 
           {currentTab === 'tutorial' && (
             <div className="hidden sm:flex items-center space-x-2">
-              <span className="text-[11px] text-slate-500 font-medium">Switch Language:</span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Switch Language:</span>
               <select
                 value={selectedTrackId}
                 onChange={e => handleSelectTrack(e.target.value)}
-                className="text-xs bg-slate-50 border border-slate-300 rounded-lg px-2.5 py-1 text-slate-800 font-bold focus:outline-none focus:border-indigo-500 cursor-pointer"
+                className="text-xs bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1 text-slate-800 dark:text-slate-200 font-bold focus:outline-none focus:border-indigo-500 cursor-pointer"
               >
                 {Array.from(new Set(languageTracks.map(t => t.category || 'Other'))).map(category => (
                   <optgroup key={category} label={category}>

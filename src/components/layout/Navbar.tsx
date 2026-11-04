@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { 
-  Terminal, 
-  Search, 
-  Code2, 
-  BookOpen, 
-  Sparkles, 
-  CheckSquare, 
-  Menu, 
-  X, 
+import {
+  Terminal,
+  Search,
+  Code2,
+  BookOpen,
+  Sparkles,
+  CheckSquare,
+  Menu,
+  X,
   HelpCircle,
   Sun,
   Moon,
@@ -37,17 +37,16 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className={`sticky top-0 z-40 w-full border-b transition-colors ${
-      isDark 
-        ? 'border-slate-800 bg-[#090d16]/90 text-white' 
+    <header className={`sticky top-0 z-40 w-full border-b transition-colors ${isDark
+        ? 'border-slate-800 bg-[#090d16]/90 text-white'
         : 'border-slate-200 bg-white/95 text-slate-800 shadow-xs'
-    } backdrop-blur-md`}>
+      } backdrop-blur-md`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        
+
         {/* Left Section: Logo & Primary Nav */}
         <div className="flex items-center space-x-6">
           {/* Logo */}
-          <button 
+          <button
             onClick={() => onNavigate('home')}
             className="flex items-center space-x-2.5 group cursor-pointer focus:outline-none"
           >
@@ -67,11 +66,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           {currentTab !== 'home' && onGoBack && (
             <button
               onClick={onGoBack}
-              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer border ${
-                isDark
+              className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer border ${isDark
                   ? 'bg-slate-800 hover:bg-slate-700 text-slate-200 border-slate-700'
                   : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300 shadow-2xs'
-              }`}
+                }`}
               title="Go back to previous page"
             >
               <ArrowLeft className="w-4 h-4 text-indigo-600 shrink-0" />
@@ -84,11 +82,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Tutorials */}
             <button
               onClick={() => onNavigate('tutorial')}
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition cursor-pointer ${
-                currentTab === 'tutorial'
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition cursor-pointer ${currentTab === 'tutorial'
                   ? isDark ? 'text-indigo-400 bg-slate-800' : 'text-indigo-700 bg-indigo-50 font-bold'
                   : isDark ? 'text-slate-300 hover:text-white hover:bg-slate-800/50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-              }`}
+                }`}
             >
               <BookOpen className="w-4 h-4 text-indigo-600" />
               <span>Tutorials</span>
@@ -97,11 +94,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Exercises */}
             <button
               onClick={() => onNavigate('exercises')}
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${
-                currentTab === 'exercises'
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${currentTab === 'exercises'
                   ? isDark ? 'text-cyan-400 bg-slate-800' : 'text-cyan-700 bg-cyan-50 font-bold'
                   : isDark ? 'text-slate-300 hover:text-white hover:bg-slate-800/50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-              }`}
+                }`}
             >
               <CheckSquare className="w-4 h-4 text-cyan-500" />
               <span>Exercises</span>
@@ -110,11 +106,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Quizzes */}
             <button
               onClick={() => onNavigate('quiz')}
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${
-                currentTab === 'quiz'
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${currentTab === 'quiz'
                   ? isDark ? 'text-amber-400 bg-slate-800' : 'text-amber-700 bg-amber-50 font-bold'
                   : isDark ? 'text-slate-300 hover:text-white hover:bg-slate-800/50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-              }`}
+                }`}
             >
               <HelpCircle className="w-4 h-4 text-amber-500" />
               <span>Quizzes</span>
@@ -123,11 +118,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* References */}
             <button
               onClick={() => onNavigate('references')}
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${
-                currentTab === 'references'
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${currentTab === 'references'
                   ? isDark ? 'text-indigo-400 bg-slate-800' : 'text-indigo-700 bg-indigo-50 font-bold'
                   : isDark ? 'text-slate-300 hover:text-white hover:bg-slate-800/50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-              }`}
+                }`}
             >
               <Sparkles className="w-4 h-4 text-indigo-500" />
               <span>References</span>
@@ -136,11 +130,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Free Resources */}
             <button
               onClick={() => onNavigate('resources')}
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${
-                currentTab === 'resources'
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${currentTab === 'resources'
                   ? isDark ? 'text-violet-400 bg-slate-800' : 'text-violet-700 bg-violet-50 font-bold'
                   : isDark ? 'text-slate-300 hover:text-white hover:bg-slate-800/50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-              }`}
+                }`}
             >
               <Code2 className="w-4 h-4 text-violet-600" />
               <span>Free Resources</span>
@@ -149,11 +142,10 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Certificates */}
             <button
               onClick={() => onNavigate('certificates')}
-              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${
-                currentTab === 'certificates'
+              className={`flex items-center space-x-1.5 px-3 py-2 rounded-lg text-sm font-semibold transition ${currentTab === 'certificates'
                   ? isDark ? 'text-amber-400 bg-slate-800' : 'text-amber-700 bg-amber-50 font-bold'
                   : isDark ? 'text-slate-300 hover:text-white hover:bg-slate-800/50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
-              }`}
+                }`}
             >
               <Award className="w-4 h-4 text-amber-500" />
               <span>Get Certified</span>
@@ -166,39 +158,33 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Quick Search Trigger */}
           <button
             onClick={onOpenCommandPalette}
-            className={`flex items-center space-x-3 px-3.5 py-1.5 rounded-xl border text-sm transition shadow-2xs group ${
-              isDark 
-                ? 'bg-slate-900 border-slate-700/80 text-slate-400 hover:text-slate-200 hover:bg-slate-800' 
+            className={`flex items-center space-x-3 px-3.5 py-1.5 rounded-xl border text-sm transition shadow-2xs group ${isDark
+                ? 'bg-slate-900 border-slate-700/80 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
                 : 'bg-slate-100 border-slate-200 text-slate-500 hover:text-slate-800 hover:bg-slate-200/70'
-            }`}
+              }`}
           >
             <Search className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition" />
-            <span className="hidden sm:inline">Search DevAura...</span>
-            <kbd className={`hidden md:inline-block px-1.5 py-0.5 text-[11px] font-mono rounded border ${
-              isDark ? 'bg-slate-800 border-slate-700 text-slate-400' : 'bg-white border-slate-200 text-slate-500'
-            }`}>
-              Ctrl K
-            </kbd>
+            <span className="hidden sm:inline">Search... </span>
+
           </button>
 
           {/* "Try It Yourself" Playground Button */}
-          <button
+          {/* <button
             onClick={() => onNavigate('playground')}
             className="relative inline-flex items-center space-x-2 px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-sky-500 hover:from-indigo-500 hover:to-sky-400 text-white font-bold text-sm shadow-md shadow-indigo-500/25 hover:shadow-indigo-500/40 transition cursor-pointer active:scale-95"
           >
             <Code2 className="w-4 h-4" />
             <span className="tracking-wide">Try It Yourself</span>
-          </button>
+          </button> */}
 
           {/* Theme Switcher Toggle */}
           <button
             onClick={onToggleTheme}
             title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            className={`p-2 rounded-xl border transition ${
-              isDark 
-                ? 'bg-slate-800 border-slate-700 text-amber-400 hover:bg-slate-700' 
+            className={`p-2 rounded-xl border transition ${isDark
+                ? 'bg-slate-800 border-slate-700 text-amber-400 hover:bg-slate-700'
                 : 'bg-slate-100 border-slate-200 text-slate-600 hover:bg-slate-200'
-            }`}
+              }`}
           >
             {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>

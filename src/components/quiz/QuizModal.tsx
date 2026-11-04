@@ -204,13 +204,13 @@ export const QuizModal: React.FC<QuizModalProps> = ({
     const totalQuestions = currentQuestions.length;
 
     return (
-      <div className="min-h-screen bg-slate-50 py-10 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#090d16] py-10 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
         <div className="max-w-3xl mx-auto">
           
           {/* Back button */}
           <button
             onClick={handleBackToCatalog}
-            className="inline-flex items-center space-x-2 text-xs font-bold text-slate-600 hover:text-indigo-600 mb-6 px-3 py-1.5 rounded-xl bg-white border border-slate-200 hover:border-indigo-300 transition cursor-pointer shadow-2xs"
+            className="inline-flex items-center space-x-2 text-xs font-bold text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 mb-6 px-3 py-1.5 rounded-xl bg-white dark:bg-[#0d1424] border border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-600 transition cursor-pointer shadow-2xs"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Back to All Quizzes</span>
@@ -218,37 +218,37 @@ export const QuizModal: React.FC<QuizModalProps> = ({
 
           {/* VIEW A: Quiz Start / Intro Screen (W3Schools Exact Format) */}
           {!quizStarted && !isFinished && (
-            <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm text-center">
-              <div className="w-20 h-20 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mx-auto mb-6 shadow-2xs">
+            <div className="bg-white dark:bg-[#0d1424] rounded-3xl border border-slate-200 dark:border-slate-800 p-8 sm:p-12 shadow-sm text-center">
+              <div className="w-20 h-20 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-100 dark:border-slate-800 flex items-center justify-center mx-auto mb-6 shadow-2xs">
                 <LanguageLogo id={activeMeta.id} size={56} />
               </div>
 
-              <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-3 tracking-tight">
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mb-3 tracking-tight">
                 The {activeMeta.name} Quiz
               </h1>
-              <p className="text-slate-600 text-sm max-w-xl mx-auto mb-8">
+              <p className="text-slate-600 dark:text-slate-400 text-sm max-w-xl mx-auto mb-8">
                 {activeMeta.description}
               </p>
 
               {/* W3Schools Format Information Boxes */}
-              <div className="text-left space-y-6 max-w-lg mx-auto bg-slate-50 p-6 sm:p-7 rounded-2xl border border-slate-200 mb-8">
+              <div className="text-left space-y-6 max-w-lg mx-auto bg-slate-50 dark:bg-[#111827] p-6 sm:p-7 rounded-2xl border border-slate-200 dark:border-slate-800 mb-8">
                 <div>
-                  <h3 className="text-base font-bold text-slate-900 mb-1.5 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-indigo-600"></span>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1.5 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400"></span>
                     The Test
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    The test contains <strong className="text-slate-900">{totalQuestions || 6} questions</strong> and there is no time limit. The test is a great way to verify your practical comprehension and test what you know, or don't know, about {activeMeta.name}.
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    The test contains <strong className="text-slate-900 dark:text-white">{totalQuestions || 6} questions</strong> and there is no time limit. The test is a great way to verify your practical comprehension and test what you know, or don't know, about {activeMeta.name}.
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-200">
-                  <h3 className="text-base font-bold text-slate-900 mb-1.5 flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+                <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-1.5 flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400"></span>
                     Count Your Score
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    You will get <strong className="text-slate-900">1 point</strong> for each correct answer. At the end of the Quiz, your total score and full review will be displayed. The maximum score is <strong className="text-slate-900">{totalQuestions || 6} points</strong>.
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    You will get <strong className="text-slate-900 dark:text-white">1 point</strong> for each correct answer. At the end of the Quiz, your total score and full review will be displayed. The maximum score is <strong className="text-slate-900 dark:text-white">{totalQuestions || 6} points</strong>.
                   </p>
                 </div>
               </div>
@@ -272,32 +272,32 @@ export const QuizModal: React.FC<QuizModalProps> = ({
 
           {/* VIEW B: Active Question Screen */}
           {quizStarted && !isFinished && currentQ && (
-            <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+            <div className="bg-white dark:bg-[#0d1424] rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
               
               {/* Question Top Progress Header */}
-              <div className="px-6 sm:px-8 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+              <div className="px-6 sm:px-8 py-4 bg-slate-50 dark:bg-[#111827] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <LanguageLogo id={activeMeta.id} size={24} />
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
                     Question {currentIdx + 1} of {totalQuestions}
                   </span>
                 </div>
-                <div className="text-xs font-bold text-slate-600 bg-white px-3 py-1 rounded-lg border border-slate-200">
-                  Score: <span className="text-emerald-600">{score}</span> / {totalQuestions}
+                <div className="text-xs font-bold text-slate-600 dark:text-slate-400 bg-white dark:bg-[#0d1424] px-3 py-1 rounded-lg border border-slate-200 dark:border-slate-800">
+                  Score: <span className="text-emerald-600 dark:text-emerald-400">{score}</span> / {totalQuestions}
                 </div>
               </div>
 
               {/* Progress Bar */}
-              <div className="w-full bg-slate-100 h-1.5">
+              <div className="w-full bg-slate-100 dark:bg-slate-800 h-1.5">
                 <div 
-                  className="bg-indigo-600 h-1.5 transition-all duration-300"
+                  className="bg-indigo-600 dark:bg-indigo-500 h-1.5 transition-all duration-300"
                   style={{ width: `${((currentIdx + 1) / totalQuestions) * 100}%` }}
                 />
               </div>
 
               <div className="p-6 sm:p-10">
                 {/* Question Text */}
-                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-8 leading-snug">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-8 leading-snug">
                   {currentQ.question}
                 </h2>
 
@@ -307,20 +307,20 @@ export const QuizModal: React.FC<QuizModalProps> = ({
                     const isSelected = selectedOption === idx;
                     const isCorrect = idx === currentQ.correctAnswerIndex;
 
-                    let containerStyle = 'bg-white border-slate-200 hover:border-indigo-300 hover:bg-slate-50 text-slate-800';
-                    let radioCircleStyle = 'border-slate-300 bg-white';
+                    let containerStyle = 'bg-white dark:bg-[#111827] border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-slate-50 dark:hover:bg-slate-800/80 text-slate-800 dark:text-slate-200';
+                    let radioCircleStyle = 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800';
 
                     if (isSelected) {
-                      containerStyle = 'bg-indigo-50/70 border-indigo-400 text-slate-900 font-semibold';
-                      radioCircleStyle = 'border-indigo-600 bg-indigo-600';
+                      containerStyle = 'bg-indigo-50/70 dark:bg-indigo-950/60 border-indigo-400 dark:border-indigo-500 text-slate-900 dark:text-white font-semibold';
+                      radioCircleStyle = 'border-indigo-600 dark:border-indigo-400 bg-indigo-600 dark:bg-indigo-500';
                     }
 
                     if (isAnswerSubmitted) {
                       if (isCorrect) {
-                        containerStyle = 'bg-emerald-50 border-emerald-500 text-emerald-950 font-bold';
+                        containerStyle = 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 dark:border-emerald-500 text-emerald-950 dark:text-emerald-100 font-bold';
                         radioCircleStyle = 'border-emerald-600 bg-emerald-600';
                       } else if (isSelected && !isCorrect) {
-                        containerStyle = 'bg-rose-50 border-rose-400 text-rose-950 font-medium';
+                        containerStyle = 'bg-rose-50 dark:bg-rose-950/60 border-rose-400 dark:border-rose-500 text-rose-950 dark:text-rose-100 font-medium';
                         radioCircleStyle = 'border-rose-600 bg-rose-600';
                       }
                     }
@@ -340,7 +340,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
                               <div className="w-2 h-2 rounded-full bg-white" />
                             )}
                           </div>
-                          <span className="font-mono text-xs font-bold text-slate-400">
+                          <span className="font-mono text-xs font-bold text-slate-400 dark:text-slate-500">
                             {String.fromCharCode(65 + idx)}.
                           </span>
                           <span className="leading-relaxed">{option}</span>
@@ -348,13 +348,13 @@ export const QuizModal: React.FC<QuizModalProps> = ({
 
                         {/* Submission Badges */}
                         {isAnswerSubmitted && isCorrect && (
-                          <div className="flex items-center space-x-1 text-emerald-600 font-bold text-xs shrink-0 ml-2">
+                          <div className="flex items-center space-x-1 text-emerald-600 dark:text-emerald-400 font-bold text-xs shrink-0 ml-2">
                             <CheckCircle2 className="w-5 h-5" />
                             <span className="hidden sm:inline">Correct</span>
                           </div>
                         )}
                         {isAnswerSubmitted && isSelected && !isCorrect && (
-                          <div className="flex items-center space-x-1 text-rose-600 font-bold text-xs shrink-0 ml-2">
+                          <div className="flex items-center space-x-1 text-rose-600 dark:text-rose-400 font-bold text-xs shrink-0 ml-2">
                             <XCircle className="w-5 h-5" />
                             <span className="hidden sm:inline">Wrong</span>
                           </div>
@@ -366,11 +366,11 @@ export const QuizModal: React.FC<QuizModalProps> = ({
 
                 {/* Explanation Box on Submit */}
                 {isAnswerSubmitted && (
-                  <div className="p-5 rounded-2xl bg-indigo-50/70 border border-indigo-200 mb-8 animate-fadeIn">
+                  <div className="p-5 rounded-2xl bg-indigo-50/70 dark:bg-[#111827] border border-indigo-200 dark:border-indigo-900/60 mb-8 animate-fadeIn">
                     <div className="flex items-start space-x-2.5">
-                      <BookOpen className="w-4 h-4 text-indigo-600 mt-0.5 shrink-0" />
-                      <div className="text-xs sm:text-sm text-slate-700 leading-relaxed">
-                        <strong className="text-indigo-900 block font-bold mb-0.5">Explanation:</strong>
+                      <BookOpen className="w-4 h-4 text-indigo-600 dark:text-indigo-400 mt-0.5 shrink-0" />
+                      <div className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                        <strong className="text-indigo-900 dark:text-indigo-300 block font-bold mb-0.5">Explanation:</strong>
                         {currentQ.explanation}
                       </div>
                     </div>
@@ -378,8 +378,8 @@ export const QuizModal: React.FC<QuizModalProps> = ({
                 )}
 
                 {/* Bottom Actions */}
-                <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
-                  <div className="text-xs text-slate-400">
+                <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                  <div className="text-xs text-slate-400 dark:text-slate-500">
                     {selectedOption === null ? 'Select an answer to continue' : 'Click submit to check your answer'}
                   </div>
 
@@ -408,26 +408,26 @@ export const QuizModal: React.FC<QuizModalProps> = ({
 
           {/* VIEW C: Quiz Completed / Results Screen (W3Schools Exact Format) */}
           {isFinished && (
-            <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 text-center shadow-md">
-              <div className="w-20 h-20 rounded-3xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto mb-6 border border-amber-200">
+            <div className="bg-white dark:bg-[#0d1424] rounded-3xl border border-slate-200 dark:border-slate-800 p-8 sm:p-12 text-center shadow-md">
+              <div className="w-20 h-20 rounded-3xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto mb-6 border border-amber-200 dark:border-amber-800">
                 <Award className="w-10 h-10" />
               </div>
 
-              <h1 className="text-3xl font-extrabold text-slate-900">Quiz Completed!</h1>
-              <p className="text-slate-500 text-sm mt-1">
-                Here is your overall score for the <strong className="text-slate-900">{activeMeta.name} Quiz</strong>:
+              <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">Quiz Completed!</h1>
+              <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">
+                Here is your overall score for the <strong className="text-slate-900 dark:text-white">{activeMeta.name} Quiz</strong>:
               </p>
 
               {/* Score Display Card */}
-              <div className="my-8 p-7 rounded-3xl bg-slate-50 border border-slate-200 inline-block min-w-[260px]">
-                <div className="text-5xl sm:text-6xl font-extrabold text-indigo-600">
+              <div className="my-8 p-7 rounded-3xl bg-slate-50 dark:bg-[#111827] border border-slate-200 dark:border-slate-800 inline-block min-w-[260px]">
+                <div className="text-5xl sm:text-6xl font-extrabold text-indigo-600 dark:text-indigo-400">
                   {Math.round((score / totalQuestions) * 100)}%
                 </div>
-                <div className="text-sm text-slate-600 mt-3 font-medium">
-                  You scored <strong className="text-slate-900 font-extrabold">{score}</strong> out of <strong className="text-slate-900 font-extrabold">{totalQuestions}</strong> points.
+                <div className="text-sm text-slate-600 dark:text-slate-300 mt-3 font-medium">
+                  You scored <strong className="text-slate-900 dark:text-white font-extrabold">{score}</strong> out of <strong className="text-slate-900 dark:text-white font-extrabold">{totalQuestions}</strong> points.
                 </div>
 
-                <div className="mt-3 inline-block px-3 py-1 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-700">
+                <div className="mt-3 inline-block px-3 py-1 rounded-full text-xs font-bold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
                   {score / totalQuestions >= 0.8
                     ? '🎉 Outstanding Performance!'
                     : score / totalQuestions >= 0.6
@@ -440,7 +440,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
               <div className="flex flex-wrap justify-center gap-3 mb-10">
                 <button
                   onClick={handleRestartQuiz}
-                  className="inline-flex items-center space-x-2 px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs border border-slate-200 transition cursor-pointer"
+                  className="inline-flex items-center space-x-2 px-5 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold text-xs border border-slate-200 dark:border-slate-700 transition cursor-pointer"
                 >
                   <RotateCcw className="w-4 h-4" />
                   <span>Retake Quiz</span>
@@ -468,20 +468,20 @@ export const QuizModal: React.FC<QuizModalProps> = ({
 
                 <button
                   onClick={handleBackToCatalog}
-                  className="inline-flex items-center space-x-2 px-5 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs border border-slate-200 transition cursor-pointer"
+                  className="inline-flex items-center space-x-2 px-5 py-3 rounded-xl bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs border border-slate-200 dark:border-slate-700 transition cursor-pointer"
                 >
                   <span>All Quizzes</span>
                 </button>
               </div>
 
               {/* Review Answers Toggle */}
-              <div className="pt-8 border-t border-slate-100 text-left">
+              <div className="pt-8 border-t border-slate-100 dark:border-slate-800 text-left">
                 <button
                   onClick={() => setShowReview(prev => !prev)}
-                  className="w-full flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 text-slate-800 text-xs font-bold border border-slate-200 transition cursor-pointer"
+                  className="w-full flex items-center justify-between p-4 rounded-2xl bg-slate-50 dark:bg-[#111827] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 text-xs font-bold border border-slate-200 dark:border-slate-700 transition cursor-pointer"
                 >
                   <div className="flex items-center space-x-2">
-                    <Check className="w-4 h-4 text-emerald-600" />
+                    <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     <span>Review All Questions & Explanations ({userAnswers.length})</span>
                   </div>
                   {showReview ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -493,23 +493,23 @@ export const QuizModal: React.FC<QuizModalProps> = ({
                       <div 
                         key={index}
                         className={`p-5 rounded-2xl border text-xs leading-relaxed ${
-                          ua.isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'
+                          ua.isCorrect ? 'bg-emerald-50/50 dark:bg-emerald-950/30 border-emerald-200 dark:border-emerald-800/60' : 'bg-rose-50/50 dark:bg-rose-950/30 border-rose-200 dark:border-rose-800/60'
                         }`}
                       >
-                        <div className="font-bold text-slate-900 text-sm mb-2">
+                        <div className="font-bold text-slate-900 dark:text-white text-sm mb-2">
                           {index + 1}. {ua.question.question}
                         </div>
                         <div className="space-y-1 mb-2">
-                          <div className={ua.isCorrect ? 'text-emerald-800 font-semibold' : 'text-rose-700'}>
+                          <div className={ua.isCorrect ? 'text-emerald-800 dark:text-emerald-300 font-semibold' : 'text-rose-700 dark:text-rose-300'}>
                             Your Answer: {ua.question.options[ua.selectedIdx]} {ua.isCorrect ? '✓' : '✗'}
                           </div>
                           {!ua.isCorrect && (
-                            <div className="text-emerald-800 font-semibold">
+                            <div className="text-emerald-800 dark:text-emerald-300 font-semibold">
                               Correct Answer: {ua.question.options[ua.question.correctAnswerIndex]} ✓
                             </div>
                           )}
                         </div>
-                        <p className="text-slate-600 mt-2 pt-2 border-t border-slate-200/60">
+                        <p className="text-slate-600 dark:text-slate-400 mt-2 pt-2 border-t border-slate-200/60 dark:border-slate-700">
                           <strong>Explanation: </strong> {ua.question.explanation}
                         </p>
                       </div>
@@ -530,19 +530,19 @@ export const QuizModal: React.FC<QuizModalProps> = ({
   // RENDER 2: QUIZZES CATALOG VIEW (W3Schools Default Quiz Test Page)
   // =========================================================================
   return (
-    <div className="min-h-screen bg-slate-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#090d16] py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-800 text-xs font-bold uppercase tracking-wider mb-4">
-            <HelpCircle className="w-4 h-4 text-indigo-600" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider mb-4">
+            <HelpCircle className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
             <span>DevAura Interactive Quizzes</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight sm:text-5xl">
             W3Schools Style Quizzes
           </h1>
-          <p className="mt-4 text-base text-slate-600 leading-relaxed">
+          <p className="mt-4 text-base text-slate-600 dark:text-slate-400 leading-relaxed">
             Test your skills across 33+ technology quizzes. Instant grading, no time limit, and detailed explanations for every question.
           </p>
         </div>
@@ -550,7 +550,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
         {/* Filter Controls: Category Tabs & Search Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
           {/* Category Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-white rounded-2xl border border-slate-200 shadow-2xs">
+          <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-white dark:bg-[#0d1424] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs">
             {quizCategories.map(cat => (
               <button
                 key={cat}
@@ -558,7 +558,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                   selectedCategory === cat
                     ? 'bg-indigo-600 text-white shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
                 {cat}
@@ -574,7 +574,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
               placeholder="Search 33+ quizzes..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 shadow-2xs transition font-medium"
+              className="w-full pl-9 pr-3 py-2 rounded-xl bg-white dark:bg-[#0d1424] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 shadow-2xs transition font-medium"
             />
             {searchQuery && (
               <button
@@ -593,7 +593,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
             <div
               key={item.id}
               onClick={() => handleSelectQuiz(item.id)}
-              className="group relative rounded-2xl p-6 sm:p-7 bg-white border border-slate-200 hover:border-emerald-500 transition-all duration-300 flex flex-col items-center text-center justify-between shadow-2xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer"
+              className="group relative rounded-2xl p-6 sm:p-7 bg-white dark:bg-[#0d1424] border border-slate-200 dark:border-slate-800 hover:border-emerald-500 dark:hover:border-emerald-500 transition-all duration-300 flex flex-col items-center text-center justify-between shadow-2xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer"
             >
               <div className="flex flex-col items-center w-full">
                 {/* Authentic Logo */}
@@ -602,21 +602,21 @@ export const QuizModal: React.FC<QuizModalProps> = ({
                 </div>
 
                 {/* Quiz Title */}
-                <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-emerald-600 transition">
+                <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition">
                   {item.quizTitle}
                 </h3>
 
                 {/* Description */}
-                <p className="text-xs text-slate-500 mt-2 leading-relaxed min-h-[38px] flex items-center justify-center">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed min-h-[38px] flex items-center justify-center">
                   {item.description}
                 </p>
 
                 {/* Meta badges */}
                 <div className="mt-3 flex items-center gap-1.5">
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 border border-slate-200">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
                     {item.questionCount} Questions
                   </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200">
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
                     No limit
                   </span>
                 </div>
@@ -629,7 +629,7 @@ export const QuizModal: React.FC<QuizModalProps> = ({
                   e.stopPropagation();
                   handleSelectQuiz(item.id);
                 }}
-                className="w-full mt-5 py-2.5 px-3 rounded-xl bg-slate-100 group-hover:bg-emerald-600 text-slate-700 group-hover:text-white font-bold text-xs transition duration-200 flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+                className="w-full mt-5 py-2.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 group-hover:bg-emerald-600 text-slate-700 dark:text-slate-200 group-hover:text-white font-bold text-xs transition duration-200 flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
               >
                 <span>Start {item.name} Quiz</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -641,10 +641,10 @@ export const QuizModal: React.FC<QuizModalProps> = ({
         {/* Empty Search State */}
         {filteredCatalog.length === 0 && (
           <div className="py-16 text-center">
-            <p className="text-sm font-semibold text-slate-600">No quizzes found matching "{searchQuery}".</p>
+            <p className="text-sm font-semibold text-slate-600 dark:text-slate-400">No quizzes found matching "{searchQuery}".</p>
             <button
               onClick={() => { setSearchQuery(''); setSelectedCategory('All Quizzes'); }}
-              className="mt-3 text-xs font-bold text-indigo-600 hover:underline"
+              className="mt-3 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline"
             >
               Clear filters
             </button>

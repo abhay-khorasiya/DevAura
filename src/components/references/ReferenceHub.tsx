@@ -46,12 +46,12 @@ export const ReferenceHub: React.FC<ReferenceHubProps> = ({ onOpenPlayground }) 
       
       {/* Header */}
       <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-800 text-xs font-bold uppercase tracking-wider mb-3">
-          <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+        <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider mb-3">
+          <BookOpen className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
           <span>DevAura Developer Encyclopedia</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900">Syntax & Reference Guide</h1>
-        <p className="text-sm text-slate-600 mt-2">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Syntax & Reference Guide</h1>
+        <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
           Comprehensive cheat sheets, syntax definitions, and live runnable examples for everyday coding.
         </p>
 
@@ -63,7 +63,7 @@ export const ReferenceHub: React.FC<ReferenceHubProps> = ({ onOpenPlayground }) 
             placeholder="Filter tags, properties, methods (e.g. <div>, display, map)..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-4 py-3 bg-white border border-slate-300 rounded-2xl text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-500 transition shadow-2xs"
+            className="w-full pl-12 pr-4 py-3 bg-white dark:bg-[#0d1424] border border-slate-300 dark:border-slate-700 rounded-2xl text-slate-800 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-500 transition shadow-2xs"
           />
         </div>
 
@@ -76,7 +76,7 @@ export const ReferenceHub: React.FC<ReferenceHubProps> = ({ onOpenPlayground }) 
               className={`px-4 py-1.5 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer ${
                 selectedLang === l.id
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                  : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs'
+                  : 'bg-white dark:bg-[#0d1424] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shadow-2xs'
               }`}
             >
               {l.label}
@@ -90,11 +90,11 @@ export const ReferenceHub: React.FC<ReferenceHubProps> = ({ onOpenPlayground }) 
         {filtered.map(item => (
           <div
             key={item.id}
-            className="rounded-2xl p-6 bg-white border border-slate-200 hover:border-indigo-400 transition flex flex-col justify-between shadow-sm hover:shadow-md group"
+            className="rounded-2xl p-6 bg-white dark:bg-[#0d1424] border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-500 transition flex flex-col justify-between shadow-sm hover:shadow-md group"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs uppercase font-mono font-bold px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200">
+                <span className="text-xs uppercase font-mono font-bold px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
                   {item.language.toUpperCase()}
                 </span>
                 <span className="text-[11px] text-slate-400 uppercase font-semibold">
@@ -102,10 +102,10 @@ export const ReferenceHub: React.FC<ReferenceHubProps> = ({ onOpenPlayground }) 
                 </span>
               </div>
 
-              <h3 className="text-lg font-mono font-bold text-slate-900 group-hover:text-indigo-600 transition">
+              <h3 className="text-lg font-mono font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
                 {item.name}
               </h3>
-              <p className="text-xs text-slate-600 mt-2 line-clamp-3 leading-relaxed">
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 line-clamp-3 leading-relaxed">
                 {item.description}
               </p>
 
@@ -126,10 +126,10 @@ export const ReferenceHub: React.FC<ReferenceHubProps> = ({ onOpenPlayground }) 
             </div>
 
             {/* Action to test in playground */}
-            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
               <button
                 onClick={() => onOpenPlayground(item.example, item.language)}
-                className="flex items-center space-x-1.5 text-xs font-bold text-indigo-700 hover:text-indigo-800 transition cursor-pointer"
+                className="flex items-center space-x-1.5 text-xs font-bold text-indigo-700 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition cursor-pointer"
               >
                 <Code2 className="w-4 h-4" />
                 <span>Try Example in Sandbox</span>

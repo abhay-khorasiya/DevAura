@@ -40,15 +40,15 @@ export const AdBanner: React.FC<AdBannerProps> = ({
 
     return (
       <div 
-        className={`${widthClasses} h-[600px] max-h-[85vh] rounded-2xl border border-dashed border-slate-300/80 bg-gradient-to-b from-slate-50 via-white to-slate-100/60 p-3 flex flex-col justify-between items-center text-center shadow-xs transition hover:border-indigo-300 relative overflow-hidden group ${className}`}
+        className={`${widthClasses} h-[600px] max-h-[85vh] rounded-2xl border border-dashed border-slate-300/80 dark:border-slate-800 bg-gradient-to-b from-slate-50 via-white to-slate-100/60 dark:from-[#0d1424] dark:via-[#090d16] dark:to-[#0d1424] p-3 flex flex-col justify-between items-center text-center shadow-xs transition hover:border-indigo-300 dark:hover:border-indigo-500 relative overflow-hidden group ${className}`}
         data-ad-position={position}
       >
         {/* Top Header Label */}
-        <div className="w-full flex items-center justify-between border-b border-slate-200 pb-1.5 mb-2">
-          <span className="text-[9px] font-extrabold tracking-widest text-slate-400 uppercase">
+        <div className="w-full flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1.5 mb-2">
+          <span className="text-[9px] font-extrabold tracking-widest text-slate-400 dark:text-slate-500 uppercase">
             Ad
           </span>
-          <span className="text-[9px] text-slate-400 flex items-center gap-0.5">
+          <span className="text-[9px] text-slate-400 dark:text-slate-500 flex items-center gap-0.5">
             DevAura <ExternalLink className="w-2.5 h-2.5" />
           </span>
         </div>
@@ -66,24 +66,24 @@ export const AdBanner: React.FC<AdBannerProps> = ({
 
           {/* Fallback / Dev placeholder when AdSense is pending */}
           <div className="absolute inset-0 flex flex-col items-center justify-center p-2 text-center pointer-events-none group-hover:scale-105 transition-transform duration-300">
-            <div className="w-9 h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 mb-3 shadow-xs">
+            <div className="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950/70 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-3 shadow-xs">
               <Sparkles className="w-4 h-4" />
             </div>
-            <span className="text-[11px] font-bold text-slate-700 leading-tight">
+            <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200 leading-tight">
               Sponsored Placement
             </span>
-            <span className="text-[10px] text-slate-400 mt-1">
+            <span className="text-[10px] text-slate-400 dark:text-slate-500 mt-1">
               Google AdSense Ready
             </span>
-            <span className="mt-4 text-[9px] font-mono px-2 py-0.5 rounded bg-slate-200/70 text-slate-600">
+            <span className="mt-4 text-[9px] font-mono px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
               {isWide ? '300 × 600' : '160 × 600'}
             </span>
           </div>
         </div>
 
         {/* Bottom Tag */}
-        <div className="w-full pt-1.5 border-t border-slate-200 text-center">
-          <span className="text-[8px] text-slate-400 uppercase tracking-wider font-semibold">
+        <div className="w-full pt-1.5 border-t border-slate-200 dark:border-slate-800 text-center">
+          <span className="text-[8px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">
             Advertisement
           </span>
         </div>
@@ -95,14 +95,14 @@ export const AdBanner: React.FC<AdBannerProps> = ({
   if (type === 'sidebar') {
     return (
       <div 
-        className={`w-full max-w-[280px] h-[250px] rounded-2xl border border-dashed border-slate-300/80 bg-gradient-to-b from-slate-50 via-white to-slate-100/60 p-3 flex flex-col justify-between items-center text-center shadow-xs transition hover:border-indigo-300 relative overflow-hidden group ${className}`}
+        className={`w-full max-w-[280px] h-[250px] rounded-2xl border border-dashed border-slate-300/80 dark:border-slate-800 bg-gradient-to-b from-slate-50 via-white to-slate-100/60 dark:from-[#0d1424] dark:via-[#090d16] dark:to-[#0d1424] p-3 flex flex-col justify-between items-center text-center shadow-xs transition hover:border-indigo-300 dark:hover:border-indigo-500 relative overflow-hidden group ${className}`}
         data-ad-position={position}
       >
-        <div className="w-full flex items-center justify-between border-b border-slate-200 pb-1.5">
-          <span className="text-[9px] font-extrabold tracking-widest text-slate-400 uppercase">
+        <div className="w-full flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-1.5">
+          <span className="text-[9px] font-extrabold tracking-widest text-slate-400 dark:text-slate-500 uppercase">
             Sponsored
           </span>
-          <span className="text-[9px] text-slate-400 flex items-center gap-0.5">
+          <span className="text-[9px] text-slate-400 dark:text-slate-500 flex items-center gap-0.5">
             Ad <ExternalLink className="w-2.5 h-2.5" />
           </span>
         </div>
@@ -118,23 +118,23 @@ export const AdBanner: React.FC<AdBannerProps> = ({
           />
 
           <div className="absolute inset-0 flex flex-col items-center justify-center p-2 text-center pointer-events-none group-hover:scale-105 transition-transform duration-300">
-            <div className="w-8 h-8 rounded-xl bg-violet-50 border border-violet-200 flex items-center justify-center text-violet-600 mb-2 shadow-xs">
+            <div className="w-8 h-8 rounded-xl bg-violet-50 dark:bg-violet-950/70 border border-violet-200 dark:border-violet-800 flex items-center justify-center text-violet-600 dark:text-violet-400 mb-2 shadow-xs">
               <Sparkles className="w-4 h-4" />
             </div>
-            <span className="text-xs font-bold text-slate-700">
+            <span className="text-xs font-bold text-slate-700 dark:text-slate-200">
               Developer Ad Space
             </span>
-            <span className="text-[10px] text-slate-400 mt-0.5">
+            <span className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">
               Targeted Developer Audience
             </span>
-            <span className="mt-2 text-[9px] font-mono px-2 py-0.5 rounded bg-slate-200/70 text-slate-600">
+            <span className="mt-2 text-[9px] font-mono px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
               300 × 250
             </span>
           </div>
         </div>
 
-        <div className="w-full pt-1.5 border-t border-slate-200 text-center">
-          <span className="text-[8px] text-slate-400 uppercase tracking-wider font-semibold">
+        <div className="w-full pt-1.5 border-t border-slate-200 dark:border-slate-800 text-center">
+          <span className="text-[8px] text-slate-400 dark:text-slate-500 uppercase tracking-wider font-semibold">
             Advertisement
           </span>
         </div>
@@ -145,7 +145,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
   // Leaderboard (Horizontal 728x90)
   return (
     <div 
-      className={`w-full max-w-4xl h-[90px] rounded-xl border border-dashed border-slate-300/80 bg-gradient-to-r from-slate-50 via-white to-slate-100/60 px-4 py-2 flex items-center justify-between text-center shadow-xs transition hover:border-indigo-300 relative overflow-hidden group ${className}`}
+      className={`w-full max-w-4xl h-[90px] rounded-xl border border-dashed border-slate-300/80 dark:border-slate-800 bg-gradient-to-r from-slate-50 via-white to-slate-100/60 dark:from-[#0d1424] dark:via-[#090d16] dark:to-[#0d1424] px-4 py-2 flex items-center justify-between text-center shadow-xs transition hover:border-indigo-300 dark:hover:border-indigo-500 relative overflow-hidden group ${className}`}
       data-ad-position={position}
     >
       <ins
@@ -159,23 +159,23 @@ export const AdBanner: React.FC<AdBannerProps> = ({
 
       <div className="absolute inset-0 flex items-center justify-between px-6 pointer-events-none">
         <div className="flex items-center space-x-3 text-left">
-          <div className="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 shadow-xs">
+          <div className="w-8 h-8 rounded-lg bg-indigo-50 dark:bg-indigo-950/70 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shadow-xs">
             <Sparkles className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-xs font-bold text-slate-800 block">
+            <span className="text-xs font-bold text-slate-800 dark:text-slate-200 block">
               Sponsored Developer Tools & Cloud
             </span>
-            <span className="text-[10px] text-slate-400">
+            <span className="text-[10px] text-slate-400 dark:text-slate-500">
               Google AdSense Leaderboard Placement
             </span>
           </div>
         </div>
         <div className="flex items-center space-x-2">
-          <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-slate-200/70 text-slate-600">
+          <span className="text-[9px] font-mono px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
             728 × 90
           </span>
-          <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400">
+          <span className="text-[9px] font-extrabold uppercase tracking-widest text-slate-400 dark:text-slate-500">
             Ad
           </span>
         </div>

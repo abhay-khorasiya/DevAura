@@ -100,7 +100,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
               <span>Next-Generation Developer Portal</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.12]">
               Learn to Code With <br />
               <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 bg-clip-text text-transparent">
                 Modern Precision.
@@ -110,14 +110,14 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
             <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 bg-clip-text text-transparent">
               • DevAura is the completely reimagined,
             </span>
-            <p className="mt-5 text-lg text-slate-600 leading-relaxed max-w-xl">
+            <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
               • Free tutorials <br/>• examples and references.<br/>
               • No sign-up needed, just start learning.
             </p>
 
             {/* Language Quick-tags */}
             <div className="mt-6 flex flex-wrap gap-2">
-              <span className="text-xs font-bold text-slate-500 self-center mr-1">Popular:</span>
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 self-center mr-1">Popular:</span>
               {[
                 { id: 'html', label: 'HTML5', color: 'hover:border-orange-500 hover:text-orange-700' },
                 { id: 'css', label: 'CSS3', color: 'hover:border-cyan-500 hover:text-cyan-700' },
@@ -137,7 +137,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
                 <button
                   key={tag.id}
                   onClick={() => onStartTrack(tag.id)}
-                  className={`px-3 py-1 text-xs font-semibold bg-white border border-slate-200 rounded-lg text-slate-700 shadow-2xs transition ${tag.color}`}
+                  className={`px-3 py-1 text-xs font-semibold bg-white dark:bg-[#0d1424] border border-slate-200 dark:border-slate-800 rounded-lg text-slate-700 dark:text-slate-300 shadow-2xs transition ${tag.color}`}
                 >
                   {tag.label}
                 </button>
@@ -156,7 +156,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
 
               <button
                 onClick={() => onOpenPlayground(snippet.code, snippet.lang)}
-                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 font-bold text-base shadow-2xs transition cursor-pointer"
+                className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-xl bg-white dark:bg-[#0d1424] hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 font-bold text-base shadow-2xs transition cursor-pointer"
               >
                 <Terminal className="w-5 h-5 text-indigo-600" />
                 <span>Open "Try it Yourself"</span>
@@ -164,7 +164,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
             </div>
 
             {/* Features check list */}
-            <div className="mt-8 pt-6 border-t border-slate-200 grid grid-cols-2 gap-3 text-xs text-slate-600 font-medium">
+            <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 gap-3 text-xs text-slate-600 dark:text-slate-400 font-medium">
               <div className="flex items-center space-x-2">
                 <CheckCircle2 className="w-4 h-4 text-indigo-600 shrink-0" />
                 <span>100% Free & Open Syntax</span>
@@ -186,15 +186,15 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
 
           {/* Right Column: Live Interactive "Try It Yourself" Hero Teaser */}
           <div className="lg:col-span-6">
-            <div className="rounded-2xl border border-slate-300 bg-white shadow-xl overflow-hidden">
+            <div className="rounded-2xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-[#0d1424] shadow-xl overflow-hidden">
 
               {/* Window Titlebar */}
-              <div className="flex items-center justify-between px-4 py-3 bg-slate-100 border-b border-slate-200">
+              <div className="flex items-center justify-between px-4 py-3 bg-slate-100 dark:bg-[#111827] border-b border-slate-200 dark:border-slate-800">
                 <div className="flex items-center space-x-2">
                   <span className="w-3 h-3 rounded-full bg-rose-400" />
                   <span className="w-3 h-3 rounded-full bg-amber-400" />
                   <span className="w-3 h-3 rounded-full bg-indigo-400" />
-                  <span className="ml-2 text-xs font-mono font-semibold text-slate-600">DevAura Interactive Live Sandbox</span>
+                  <span className="ml-2 text-xs font-mono font-semibold text-slate-600 dark:text-slate-400">DevAura Interactive Live Sandbox</span>
                 </div>
 
                 <div className="flex items-center space-x-1">
@@ -233,10 +233,10 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
                 </div>
 
                 {/* Live Output Preview */}
-                <div className="p-4 bg-slate-50 flex flex-col justify-between h-64">
+                <div className="p-4 bg-slate-50 dark:bg-[#0a0f1d] flex flex-col justify-between h-64">
                   <div className="flex-1 flex flex-col justify-center">
                     <div
-                      className="w-full rounded-lg border border-slate-200 bg-white p-2 shadow-2xs"
+                      className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0f172a] p-2 shadow-2xs"
                       dangerouslySetInnerHTML={{ __html: snippet.preview }}
                     />
                   </div>

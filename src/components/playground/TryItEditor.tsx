@@ -262,15 +262,15 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
   };
 
   return (
-    <div className={`flex flex-col bg-slate-100 text-slate-800 ${isFullScreen ? 'fixed inset-0 z-50' : 'min-h-[85vh]'}`}>
+    <div className={`flex flex-col bg-slate-100 dark:bg-[#090d16] text-slate-800 dark:text-slate-100 ${isFullScreen ? 'fixed inset-0 z-50' : 'min-h-[85vh]'}`}>
       
       {/* Top Toolbar */}
-      <div className="flex flex-wrap items-center justify-between px-4 py-3 bg-white border-b border-slate-200 gap-3 shadow-2xs">
+      <div className="flex flex-wrap items-center justify-between px-4 py-3 bg-white dark:bg-[#0b101c] border-b border-slate-200 dark:border-slate-800 gap-3 shadow-2xs">
         
         {/* Left: Language Selection & Run button */}
         <div className="flex items-center space-x-3">
           {/* Language Tabs */}
-          <div className="flex items-center bg-slate-100 rounded-xl p-1 border border-slate-200">
+          <div className="flex items-center bg-slate-100 dark:bg-slate-900 rounded-xl p-1 border border-slate-200 dark:border-slate-800">
             {(['html', 'css', 'javascript', 'python', 'sql'] as const).map(l => (
               <button
                 key={l}
@@ -278,7 +278,7 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
                 className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition ${
                   language === l
                     ? 'bg-indigo-600 text-white shadow-2xs'
-                    : 'text-slate-600 hover:text-slate-900'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 {l}
@@ -302,7 +302,7 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
           {/* Reset */}
           <button
             onClick={handleReset}
-            className="p-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition shadow-2xs cursor-pointer"
+            className="p-2 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition shadow-2xs cursor-pointer"
             title="Reset to default example"
           >
             <RotateCcw className="w-4 h-4" />
@@ -316,8 +316,8 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
             onClick={() => setShowConsole(!showConsole)}
             className={`flex items-center space-x-1 px-3 py-1.5 rounded-xl border text-xs font-semibold transition cursor-pointer ${
               showConsole 
-                ? 'bg-indigo-50 text-indigo-800 border-indigo-300' 
-                : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 border-indigo-300 dark:border-indigo-800' 
+                : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
             }`}
           >
             <Terminal className="w-3.5 h-3.5" />
@@ -327,7 +327,7 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
           {/* Orientation Toggle */}
           <button
             onClick={() => setOrientation(orientation === 'horizontal' ? 'vertical' : 'horizontal')}
-            className="p-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition shadow-2xs cursor-pointer"
+            className="p-2 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition shadow-2xs cursor-pointer"
             title={orientation === 'horizontal' ? 'Switch to Vertical Split' : 'Switch to Horizontal Split'}
           >
             {orientation === 'horizontal' ? <Columns className="w-4 h-4" /> : <Rows className="w-4 h-4" />}
@@ -336,16 +336,16 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
           {/* Copy Button */}
           <button
             onClick={handleCopy}
-            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-xs font-semibold transition shadow-2xs cursor-pointer"
+            className="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-xs font-semibold transition shadow-2xs cursor-pointer"
           >
-            {copied ? <Check className="w-3.5 h-3.5 text-indigo-600" /> : <Copy className="w-3.5 h-3.5" />}
+            {copied ? <Check className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" /> : <Copy className="w-3.5 h-3.5" />}
             <span className="hidden sm:inline">{copied ? 'Copied' : 'Copy'}</span>
           </button>
 
           {/* Download Button */}
           <button
             onClick={handleDownload}
-            className="p-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition shadow-2xs cursor-pointer"
+            className="p-2 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition shadow-2xs cursor-pointer"
             title="Download code"
           >
             <Download className="w-4 h-4" />
@@ -354,7 +354,7 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
           {/* Full Screen Button */}
           <button
             onClick={() => setIsFullScreen(!isFullScreen)}
-            className="p-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 transition shadow-2xs cursor-pointer"
+            className="p-2 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 transition shadow-2xs cursor-pointer"
             title={isFullScreen ? 'Exit Full Screen' : 'Full Screen'}
           >
             {isFullScreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -367,7 +367,7 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
       <div className={`flex-1 flex ${orientation === 'horizontal' ? 'flex-col md:flex-row' : 'flex-col'} overflow-hidden relative`}>
         
         {/* Left Pane: Code Editor */}
-        <div className="flex-1 flex flex-col bg-[#0b101c] border-r border-slate-200 overflow-hidden">
+        <div className="flex-1 flex flex-col bg-[#0b101c] border-r border-slate-200 dark:border-slate-800 overflow-hidden">
           <div className="flex items-center justify-between px-4 py-2 bg-[#080d18] border-b border-slate-800 text-xs text-slate-400 font-mono">
             <span className="flex items-center space-x-2 text-slate-300">
               <Code2 className="w-3.5 h-3.5 text-indigo-400" />
@@ -386,8 +386,8 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
         </div>
 
         {/* Right Pane: Live Output Preview */}
-        <div className="flex-1 flex flex-col bg-white overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-2 bg-slate-100 border-b border-slate-200 text-xs text-slate-600 font-mono font-semibold">
+        <div className="flex-1 flex flex-col bg-white dark:bg-[#0c1222] overflow-hidden">
+          <div className="flex items-center justify-between px-4 py-2 bg-slate-100 dark:bg-[#080d18] border-b border-slate-200 dark:border-slate-800 text-xs text-slate-600 dark:text-slate-400 font-mono font-semibold">
             <span className="flex items-center space-x-2">
               <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
               <span>LIVE RESULT PREVIEW</span>
@@ -396,7 +396,7 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
           </div>
 
           {/* Render by Language Type */}
-          <div className="flex-1 overflow-auto bg-white relative">
+          <div className="flex-1 overflow-auto bg-white dark:bg-[#0c1222] relative">
             {language === 'python' ? (
               /* Python Output */
               <div className="p-6 font-mono text-sm text-slate-100 bg-[#070a12] h-full overflow-y-auto">
@@ -409,26 +409,26 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
               </div>
             ) : language === 'sql' ? (
               /* SQL Output Table */
-              <div className="p-6 bg-slate-50 h-full overflow-y-auto">
+              <div className="p-6 bg-slate-50 dark:bg-[#0c1222] h-full overflow-y-auto">
                 {sqlResult ? (
                   <div>
                     {sqlResult.message && (
-                      <div className="text-xs font-mono text-indigo-800 mb-4 bg-indigo-50 p-2.5 rounded-lg border border-indigo-200 font-semibold">
+                      <div className="text-xs font-mono text-indigo-800 dark:text-indigo-300 mb-4 bg-indigo-50 dark:bg-indigo-950/40 p-2.5 rounded-lg border border-indigo-200 dark:border-indigo-800 font-semibold">
                         {sqlResult.message}
                       </div>
                     )}
-                    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white shadow-2xs">
-                      <table className="w-full text-left text-xs font-mono text-slate-800">
-                        <thead className="bg-slate-100 text-slate-700 uppercase tracking-wider text-[11px]">
+                    <div className="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#080d18] shadow-2xs">
+                      <table className="w-full text-left text-xs font-mono text-slate-800 dark:text-slate-200">
+                        <thead className="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 uppercase tracking-wider text-[11px]">
                           <tr>
                             {sqlResult.columns.map((col, idx) => (
-                              <th key={idx} className="p-3 border-b border-slate-200 font-bold">{col}</th>
+                              <th key={idx} className="p-3 border-b border-slate-200 dark:border-slate-800 font-bold">{col}</th>
                             ))}
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-100">
+                        <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
                           {sqlResult.rows.map((row, rIdx) => (
-                            <tr key={rIdx} className="hover:bg-slate-50 transition">
+                            <tr key={rIdx} className="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition">
                               {row.map((val, cIdx) => (
                                 <td key={cIdx} className="p-3 whitespace-nowrap">{val}</td>
                               ))}
@@ -451,7 +451,7 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
                 srcDoc={renderedSrc}
                 title="Sandbox Preview"
                 sandbox="allow-scripts allow-modals allow-same-origin"
-                className="w-full h-full border-0 bg-white"
+                className="w-full h-full border-0 bg-white dark:bg-white"
               />
             )}
           </div>
@@ -461,25 +461,25 @@ export const TryItEditor: React.FC<TryItEditorProps> = ({
 
       {/* Optional Console Drawer */}
       {showConsole && (
-        <div className="h-40 bg-white border-t border-slate-200 flex flex-col font-mono text-xs">
-          <div className="flex items-center justify-between px-4 py-2 bg-slate-100 border-b border-slate-200">
-            <span className="text-slate-700 font-bold flex items-center">
-              <Terminal className="w-3.5 h-3.5 text-indigo-600 mr-2" />
+        <div className="h-40 bg-white dark:bg-[#0b101c] border-t border-slate-200 dark:border-slate-800 flex flex-col font-mono text-xs">
+          <div className="flex items-center justify-between px-4 py-2 bg-slate-100 dark:bg-[#080d18] border-b border-slate-200 dark:border-slate-800">
+            <span className="text-slate-700 dark:text-slate-300 font-bold flex items-center">
+              <Terminal className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 mr-2" />
               Terminal & Diagnostics
             </span>
             <button
               onClick={() => setConsoleLogs([])}
-              className="text-[11px] text-slate-500 hover:text-slate-800 underline"
+              className="text-[11px] text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white underline cursor-pointer"
             >
               Clear
             </button>
           </div>
-          <div className="flex-1 p-3 overflow-y-auto space-y-1 text-slate-800">
+          <div className="flex-1 p-3 overflow-y-auto space-y-1 text-slate-800 dark:text-slate-200">
             {consoleLogs.length === 0 ? (
-              <span className="text-slate-400">// No console messages yet</span>
+              <span className="text-slate-400 dark:text-slate-500">// No console messages yet</span>
             ) : (
               consoleLogs.map((log, idx) => (
-                <div key={idx} className="text-indigo-700 font-semibold">&gt; {log}</div>
+                <div key={idx} className="text-indigo-700 dark:text-indigo-400 font-semibold">&gt; {log}</div>
               ))
             )}
           </div>

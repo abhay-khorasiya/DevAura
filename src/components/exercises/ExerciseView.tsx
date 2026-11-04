@@ -104,24 +104,24 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
     <div className="max-w-5xl mx-auto px-4 py-10">
       
       {/* Title & Progress Banner */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 pb-6 border-b border-slate-200 gap-4">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 pb-6 border-b border-slate-200 dark:border-slate-800 gap-4">
         <div>
-          <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-cyan-700 mb-1">
-            <Sparkles className="w-4 h-4 text-cyan-600" />
+          <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-cyan-700 dark:text-cyan-400 mb-1">
+            <Sparkles className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
             <span>DevAura Interactive Exercises</span>
           </div>
-          <h1 className="text-3xl font-extrabold text-slate-900">Test Yourself With Code Exercises</h1>
-          <p className="text-sm text-slate-600 mt-1">
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white">Test Yourself With Code Exercises</h1>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
             Complete the missing syntax keywords and verify your understanding immediately.
           </p>
         </div>
 
         {/* Solved Progress Counter */}
-        <div className="flex items-center space-x-3 bg-white border border-slate-200 px-4 py-2.5 rounded-2xl shadow-2xs">
+        <div className="flex items-center space-x-3 bg-white dark:bg-[#0d1424] border border-slate-200 dark:border-slate-800 px-4 py-2.5 rounded-2xl shadow-2xs">
           <Award className="w-5 h-5 text-amber-500" />
           <div>
-            <div className="text-xs text-slate-500 font-semibold">Challenges Solved</div>
-            <div className="text-sm font-bold text-slate-900">
+            <div className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Challenges Solved</div>
+            <div className="text-sm font-bold text-slate-900 dark:text-white">
               {solvedIds.length} <span className="text-slate-400 font-normal">/ {exerciseItems.length} completed</span>
             </div>
           </div>
@@ -140,7 +140,7 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
             className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer ${
               selectedLang === lang.id
                 ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/20'
-                : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 shadow-2xs'
+                : 'bg-white dark:bg-[#0d1424] hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-800 shadow-2xs'
             }`}
           >
             {lang.label}
@@ -149,15 +149,15 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
       </div>
 
       {/* Exercise Card */}
-      <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-md">
+      <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1424] overflow-hidden shadow-md">
         
         {/* Card Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-slate-50 border-b border-slate-200">
+        <div className="flex items-center justify-between px-6 py-4 bg-slate-50 dark:bg-[#0a0f1d] border-b border-slate-200 dark:border-slate-800">
           <div className="flex items-center space-x-3">
-            <span className="text-xs uppercase font-mono font-bold px-2.5 py-1 rounded-md bg-indigo-100 text-indigo-800 border border-indigo-200">
+            <span className="text-xs uppercase font-mono font-bold px-2.5 py-1 rounded-md bg-indigo-100 dark:bg-indigo-950/60 text-indigo-800 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
               {currentExercise.language.toUpperCase()}
             </span>
-            <span className="text-base font-bold text-slate-900">
+            <span className="text-base font-bold text-slate-900 dark:text-white">
               Exercise {currentIndex + 1} of {filtered.length}: {currentExercise.title}
             </span>
           </div>
@@ -166,14 +166,14 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
             <button
               onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
               disabled={currentIndex === 0}
-              className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 disabled:opacity-40 text-xs text-slate-700 font-semibold transition cursor-pointer"
+              className="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-40 text-xs text-slate-700 dark:text-slate-300 font-semibold transition cursor-pointer"
             >
               Previous
             </button>
             <button
               onClick={() => setCurrentIndex(prev => Math.min(filtered.length - 1, prev + 1))}
               disabled={currentIndex === filtered.length - 1}
-              className="px-3 py-1.5 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 disabled:opacity-40 text-xs text-slate-700 font-semibold transition cursor-pointer"
+              className="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-40 text-xs text-slate-700 dark:text-slate-300 font-semibold transition cursor-pointer"
             >
               Next
             </button>
@@ -182,7 +182,7 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
         {/* Instructions */}
         <div className="p-6">
-          <p className="text-base font-semibold text-slate-800 mb-6">
+          <p className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-6">
             {currentExercise.instructions}
           </p>
 
@@ -218,20 +218,20 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
           {currentFeedback && (
             <div className={`mt-4 p-4 rounded-xl border flex items-center space-x-3 ${
               currentFeedback.correct 
-                ? 'bg-indigo-50 border-indigo-300 text-indigo-900' 
-                : 'bg-rose-50 border-rose-300 text-rose-900'
+                ? 'bg-indigo-50 dark:bg-indigo-950/40 border-indigo-300 dark:border-indigo-800 text-indigo-900 dark:text-indigo-200' 
+                : 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 text-rose-900 dark:text-rose-200'
             }`}>
               {currentFeedback.correct ? (
-                <CheckCircle2 className="w-5 h-5 text-indigo-600 shrink-0" />
+                <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0" />
               ) : (
-                <HelpCircle className="w-5 h-5 text-rose-600 shrink-0" />
+                <HelpCircle className="w-5 h-5 text-rose-600 dark:text-rose-400 shrink-0" />
               )}
               <div className="text-sm font-bold">{currentFeedback.message}</div>
             </div>
           )}
 
           {/* Action Row */}
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200">
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-200 dark:border-slate-800">
             <div className="flex items-center space-x-3">
               <button
                 onClick={() => checkAnswer(currentExercise)}
@@ -242,7 +242,7 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
               <button
                 onClick={() => handleToggleHint(currentExercise.id)}
-                className="flex items-center space-x-1 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold border border-slate-200 transition"
+                className="flex items-center space-x-1 px-4 py-2 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-700 transition"
               >
                 <HelpCircle className="w-3.5 h-3.5" />
                 <span>{showHint[currentExercise.id] ? 'Hide Hint' : 'Hint'}</span>
@@ -250,7 +250,7 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
               <button
                 onClick={() => handleReveal(currentExercise.id)}
-                className="flex items-center space-x-1 px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold border border-slate-200 transition"
+                className="flex items-center space-x-1 px-4 py-2 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold border border-slate-200 dark:border-slate-700 transition"
               >
                 <Eye className="w-3.5 h-3.5" />
                 <span>{revealedSolutions[currentExercise.id] ? 'Hide Answer' : 'Show Answer'}</span>
@@ -259,7 +259,7 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
             <button
               onClick={() => onOpenPlayground(currentExercise.solution, currentExercise.language)}
-              className="flex items-center space-x-1.5 text-xs text-indigo-700 hover:text-indigo-800 font-bold"
+              className="flex items-center space-x-1.5 text-xs text-indigo-700 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-bold"
             >
               <Code2 className="w-4 h-4" />
               <span>Test in Full Playground</span>
@@ -268,17 +268,17 @@ export const ExerciseView: React.FC<ExerciseViewProps> = ({
 
           {/* Hint Accordion */}
           {showHint[currentExercise.id] && (
-            <div className="mt-4 p-4 rounded-xl bg-cyan-50 border border-cyan-200 text-cyan-900 text-xs leading-relaxed animate-fadeIn font-medium">
+            <div className="mt-4 p-4 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800 text-cyan-900 dark:text-cyan-200 text-xs leading-relaxed animate-fadeIn font-medium">
               <strong>💡 Hint:</strong> {currentExercise.hint}
             </div>
           )}
 
           {/* Revealed Solution Accordion */}
           {revealedSolutions[currentExercise.id] && (
-            <div className="mt-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs font-mono space-y-2 animate-fadeIn">
-              <div className="text-slate-500 font-sans font-bold text-xs uppercase tracking-wider">Solution:</div>
-              <pre className="text-indigo-200 bg-[#0f172a] p-3 rounded-lg overflow-x-auto">{currentExercise.solution}</pre>
-              <p className="text-slate-700 font-sans text-xs pt-2 font-medium">{currentExercise.explanation}</p>
+            <div className="mt-4 p-4 rounded-xl bg-slate-50 dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 text-xs font-mono space-y-2 animate-fadeIn">
+              <div className="text-slate-500 dark:text-slate-400 font-sans font-bold text-xs uppercase tracking-wider">Solution:</div>
+              <pre className="text-indigo-200 bg-[#070b13] p-3 rounded-lg overflow-x-auto border border-slate-800">{currentExercise.solution}</pre>
+              <p className="text-slate-700 dark:text-slate-300 font-sans text-xs pt-2 font-medium">{currentExercise.explanation}</p>
             </div>
           )}
         </div>

@@ -76,19 +76,19 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
   }, [selectedCategory, searchQuery]);
 
   return (
-    <section className="py-20 bg-slate-50 border-b border-slate-200">
+    <section className="py-20 bg-slate-50 dark:bg-[#090d16] border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-800 text-xs font-bold uppercase tracking-wider mb-3">
-            <BookOpen className="w-3.5 h-3.5 text-indigo-600" />
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider mb-3">
+            <BookOpen className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
             <span>Comprehensive {languageTracks.length}+ Technology Catalog</span>
           </div>
-          <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight sm:text-4xl">
             Choose Your Learning Track
           </h2>
-          <p className="mt-4 text-base text-slate-600">
+          <p className="mt-4 text-base text-slate-600 dark:text-slate-400">
             From essential web fundamentals and systems programming to databases, data science, machine learning, and cybersecurity. Designed for all skill levels.
           </p>
         </div>
@@ -96,7 +96,7 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
         {/* Filter Controls: Category Tabs & Search Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
           {/* Category Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-white rounded-2xl border border-slate-200 shadow-2xs">
+          <div className="flex flex-wrap items-center gap-1.5 p-1.5 bg-white dark:bg-[#0d1424] rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xs">
             {categories.map(cat => (
               <button
                 key={cat.id}
@@ -104,7 +104,7 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                   selectedCategory === cat.id
                     ? 'bg-indigo-600 text-white shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`}
               >
                 {cat.label}
@@ -120,7 +120,7 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
               placeholder="Search 33+ languages..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 rounded-xl bg-white border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 shadow-2xs transition font-medium"
+              className="w-full pl-9 pr-3 py-2 rounded-xl bg-white dark:bg-[#0d1424] border border-slate-200 dark:border-slate-700 text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 shadow-2xs transition font-medium"
             />
             {searchQuery && (
               <button
@@ -141,7 +141,7 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
               <div
                 key={track.id}
                 onClick={() => onSelectTrack(track.id)}
-                className="group relative rounded-2xl p-6 sm:p-7 bg-white border border-slate-200 hover:border-indigo-400 transition-all duration-300 flex flex-col items-center text-center justify-between shadow-2xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer"
+                className="group relative rounded-2xl p-6 sm:p-7 bg-white dark:bg-[#0d1424] border border-slate-200 dark:border-slate-800 hover:border-indigo-400 dark:hover:border-indigo-500 transition-all duration-300 flex flex-col items-center text-center justify-between shadow-2xs hover:shadow-xl hover:-translate-y-1.5 cursor-pointer"
               >
                 <div className="flex flex-col items-center w-full">
                   {/* Authentic Language Logo */}
@@ -150,12 +150,12 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
                   </div>
 
                   {/* Language Name */}
-                  <h3 className="text-xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition">
+                  <h3 className="text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition">
                     {meta.shortName}
                   </h3>
 
                   {/* Concise 1-line Description */}
-                  <p className="text-xs sm:text-sm text-slate-500 mt-2 leading-relaxed min-h-[40px] flex items-center justify-center">
+                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed min-h-[40px] flex items-center justify-center">
                     {meta.shortDesc}
                   </p>
                 </div>
@@ -167,7 +167,7 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
                     e.stopPropagation();
                     onSelectTrack(track.id);
                   }}
-                  className="w-full mt-5 py-2.5 px-3 rounded-xl bg-slate-100 group-hover:bg-indigo-600 text-slate-700 group-hover:text-white font-bold text-xs transition duration-200 flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
+                  className="w-full mt-5 py-2.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 group-hover:bg-indigo-600 text-slate-700 dark:text-slate-200 group-hover:text-white font-bold text-xs transition duration-200 flex items-center justify-center gap-1.5 cursor-pointer shadow-2xs"
                 >
                   <span>Learn {meta.shortName}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
