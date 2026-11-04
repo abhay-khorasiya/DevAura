@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { 
-  Play, 
-  ArrowRight, 
-  CheckCircle2, 
-  Copy, 
-  Check, 
-  Terminal, 
+import {
+  Play,
+  ArrowRight,
+  CheckCircle2,
+  Copy,
+  Check,
+  Terminal,
   Flame
 } from 'lucide-react';
 
@@ -91,7 +91,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* Left Column: Headline, Value Proposition, Action CTAs */}
           <div className="lg:col-span-6 text-left">
             {/* Announcement badge */}
@@ -101,14 +101,18 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
-              Learn to Code  <br />
+              Learn to Code With <br />
               <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 bg-clip-text text-transparent">
                 Modern Precision.
               </span>
             </h1>
 
+            <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-sky-600 bg-clip-text text-transparent">
+              • DevAura is the completely reimagined,
+            </span>
             <p className="mt-5 text-lg text-slate-600 leading-relaxed max-w-xl">
-              DevAura is the completely reimagined, clean developer learning platform that combines interactive coding exercises, live in-browser previews, and a modern design to help you learn programming faster and more effectively.
+              • Free tutorials <br/>• examples and references.<br/>
+              • No sign-up needed, just start learning.
             </p>
 
             {/* Language Quick-tags */}
@@ -183,7 +187,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
           {/* Right Column: Live Interactive "Try It Yourself" Hero Teaser */}
           <div className="lg:col-span-6">
             <div className="rounded-2xl border border-slate-300 bg-white shadow-xl overflow-hidden">
-              
+
               {/* Window Titlebar */}
               <div className="flex items-center justify-between px-4 py-3 bg-slate-100 border-b border-slate-200">
                 <div className="flex items-center space-x-2">
@@ -198,11 +202,10 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
-                      className={`px-2.5 py-1 text-xs font-bold rounded-md uppercase transition ${
-                        activeTab === tab
+                      className={`px-2.5 py-1 text-xs font-bold rounded-md uppercase transition ${activeTab === tab
                           ? 'bg-indigo-100 text-indigo-800 border border-indigo-300'
                           : 'text-slate-600 hover:text-slate-900'
-                      }`}
+                        }`}
                     >
                       {tab}
                     </button>
@@ -232,7 +235,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
                 {/* Live Output Preview */}
                 <div className="p-4 bg-slate-50 flex flex-col justify-between h-64">
                   <div className="flex-1 flex flex-col justify-center">
-                    <div 
+                    <div
                       className="w-full rounded-lg border border-slate-200 bg-white p-2 shadow-2xs"
                       dangerouslySetInnerHTML={{ __html: snippet.preview }}
                     />

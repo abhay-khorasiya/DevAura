@@ -31,9 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onSelectTrack }) => 
               DevAura is the next-generation, high-performance developer learning ecosystem. Fast, interactive, modern, and completely accessible to learners worldwide.
             </p>
 
-            <div className="pt-2 text-xs text-slate-400">
-              Built with React 19, Tailwind CSS v4 & Vite.
-            </div>
+            
           </div>
 
           {/* Column 1: Core Tutorials */}
