@@ -1,7 +1,8 @@
 {
   "name": "devaura",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "DevAura — The Modern Developer Learning Platform & Playground",
   "type": "module",
   "scripts": {
     "dev": "vite",

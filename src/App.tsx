@@ -1,3 +1,4 @@
+// DevAura Platform Application Entry
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Navbar } from './components/layout/Navbar';

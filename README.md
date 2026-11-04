@@ -1,4 +1,4 @@
-# ✨ DevAura — The Modern learning platform for Students
+# ✨ DevAura — The Modern Developer Learning Platform & Playground
 
 > A high-performance, developer-first learning platform and interactive sandbox inspired by W3Schools, modernized with 2026 aesthetics and instant execution runtimes.
 

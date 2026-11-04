@@ -88,9 +88,7 @@ export const LanguageCards: React.FC<LanguageCardsProps> = ({
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight sm:text-4xl">
             Choose Your Learning Track
           </h2>
-          <p className="mt-4 text-base text-slate-600 dark:text-slate-400">
-            From essential web fundamentals and systems programming to databases, data science, machine learning, and cybersecurity. Designed for all skill levels.
-          </p>
+          
         </div>
 
         {/* Filter Controls: Category Tabs & Search Bar */}
