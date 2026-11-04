@@ -32,11 +32,15 @@ export const AdBanner: React.FC<AdBannerProps> = ({
     }
   }, []);
 
-  // Skyscraper (Left / Right vertical sidebar rails - 160x600)
+  // Skyscraper (Left / Right vertical sidebar rails - 160x600 or 280/300x600 wide)
   if (type === 'skyscraper') {
+    const hasCustomWidth = className.includes('w-') || className.includes('max-w-');
+    const widthClasses = hasCustomWidth ? '' : 'w-[140px] sm:w-[160px]';
+    const isWide = hasCustomWidth || className.includes('280') || className.includes('300');
+
     return (
       <div 
-        className={`w-[140px] sm:w-[160px] h-[600px] max-h-[85vh] rounded-2xl border border-dashed border-slate-300/80 bg-gradient-to-b from-slate-50 via-white to-slate-100/60 p-3 flex flex-col justify-between items-center text-center shadow-xs transition hover:border-indigo-300 relative overflow-hidden group ${className}`}
+        className={`${widthClasses} h-[600px] max-h-[85vh] rounded-2xl border border-dashed border-slate-300/80 bg-gradient-to-b from-slate-50 via-white to-slate-100/60 p-3 flex flex-col justify-between items-center text-center shadow-xs transition hover:border-indigo-300 relative overflow-hidden group ${className}`}
         data-ad-position={position}
       >
         {/* Top Header Label */}
@@ -72,7 +76,7 @@ export const AdBanner: React.FC<AdBannerProps> = ({
               Google AdSense Ready
             </span>
             <span className="mt-4 text-[9px] font-mono px-2 py-0.5 rounded bg-slate-200/70 text-slate-600">
-              160 × 600
+              {isWide ? '300 × 600' : '160 × 600'}
             </span>
           </div>
         </div>

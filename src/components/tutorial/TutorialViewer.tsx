@@ -372,7 +372,7 @@ export const TutorialViewer: React.FC<TutorialViewerProps> = ({
 
         {/* Left Sidebar Ad Placement */}
         <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col items-center">
-          <AdBanner type="sidebar" position="tutorial-left-sidebar" />
+          <AdBanner type="sidebar" position="tutorial-left-sidebar" className="w-full max-w-[280px]" />
         </div>
       </aside>
 
@@ -632,9 +632,9 @@ export const TutorialViewer: React.FC<TutorialViewerProps> = ({
       </main>
 
       {/* Right Rail: Sticky Ad Sidebar (Visible on xl+ screens) */}
-      <aside aria-label="Tutorial Right Advertisement" className="hidden xl:flex w-72 shrink-0 flex-col py-10 px-4 border-l border-slate-100 sticky top-16 self-start space-y-6">
-        <AdBanner type="sidebar" position="tutorial-right-rectangle" />
-        <AdBanner type="skyscraper" position="tutorial-right-skyscraper" />
+      <aside aria-label="Tutorial Right Advertisement" className="hidden xl:flex w-72 shrink-0 flex-col items-center py-10 px-4 border-l border-slate-100 sticky top-16 self-start space-y-6">
+        <AdBanner type="sidebar" position="tutorial-right-rectangle" className="w-full max-w-[280px]" />
+        <AdBanner type="skyscraper" position="tutorial-right-skyscraper" className="w-full max-w-[280px]" />
       </aside>
     </div>
   );
