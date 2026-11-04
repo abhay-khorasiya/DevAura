@@ -97,11 +97,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
 
           {/* Left Column: Headline, Value Proposition, Action CTAs */}
           <div className="lg:col-span-6 text-left">
-            {/* Announcement badge */}
-            <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-bold uppercase tracking-wider mb-6">
-              <Flame className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
-              <span>Next-Generation Developer Portal</span>
-            </div>
+
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.12]">
               Learn to Code With <br />
@@ -114,7 +110,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
               • DevAura is the completely reimagined,
             </span>
             <p className="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
-              • Free tutorials <br/>• examples and references.<br/>
+              • Free tutorials <br />• examples and references.<br />
               • No sign-up needed, just start learning.
             </p>
 
@@ -206,8 +202,8 @@ export const Hero: React.FC<HeroProps> = ({ onStartTrack, onOpenPlayground }) =>
                       key={tab}
                       onClick={() => setActiveTab(tab)}
                       className={`px-2.5 py-1 text-xs font-bold rounded-md uppercase transition ${activeTab === tab
-                          ? 'bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-200 border border-indigo-300 dark:border-indigo-700'
-                          : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        ? 'bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-200 border border-indigo-300 dark:border-indigo-700'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                         }`}
                     >
                       {tab}
